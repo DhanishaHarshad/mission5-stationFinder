@@ -1,0 +1,22 @@
+{
+  "name": "z-energy-backend",
+  "version": "1.0.0",
+  "description": "backend for the z-energy application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DhanishaHarshad/z-energy-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DhanishaHarshad/z-energy-backend/issues"
+  },
+  "homepage": "https://github.com/DhanishaHarshad/z-energy-backend#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
