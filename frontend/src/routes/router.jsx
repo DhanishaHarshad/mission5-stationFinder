@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 
 import Home from "../pages/Home";
 import FindStation from "../pages/FindStation";
+import Directions from "../pages/Directions";
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: "/find-station",
     Component: FindStation,
+  },
+  {
+    path: "/directions",
+    Component: Directions,
   },
 ]);
 
