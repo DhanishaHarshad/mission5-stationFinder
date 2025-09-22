@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DhanishaHarshad/z-energy-backend#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongoose": "^8.18.1"
   }
 }
