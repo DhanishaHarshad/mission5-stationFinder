@@ -1,3 +1,12 @@
+/* Global Layout Baseline */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Font Definitions */
 @font-face {
   font-family: "Inter";
   src: url("/assets/fonts/Inter/Inter_18pt-Regular.ttf") format("truetype");
@@ -6,6 +15,7 @@
   font-display: swap; /* shows fall back font immediately, then swap to custom font when ready */
 }
 
+/* Base Typography & Colour */
 :root {
   /* Primary Font */
   --primary-font: "Inter";
@@ -28,7 +38,7 @@
   --heading-size-h5: 1.75rem;
   --heading-size-h6: 1.5rem;
 
-  /* Colours */
+  /* Colour */
   --white: #ffffff;
 
   --grey-100: #f8f8f8;
