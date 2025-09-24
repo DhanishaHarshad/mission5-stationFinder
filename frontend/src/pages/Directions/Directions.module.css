@@ -1,0 +1,37 @@
+.directionsStationNameWrapper {
+  background: linear-gradient(
+    90deg,
+    var(--Secondary-Dark-Indigo, #131045) 0%,
+    var(--Secondary-Mid-Indigo, #3129ac) 100%
+  );
+  color: var(--Neutral-White);
+  display: flex;
+  width: 90rem;
+  padding: 3rem 10rem;
+  flex-direction: column;
+  align-items: self-start;
+  gap: 0.5rem;
+}
+
+.directionsSectionWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.directionsLeftSection {
+  width: 50%;
+}
+
+.directionsRightSection {
+  width: 50%;
+  min-height: 40vh;
+}
+
+.directionsSearchWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}
