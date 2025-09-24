@@ -1,58 +1,62 @@
 import React from "react";
+import styles from "./Directions.module.css";
 
-export default function Directions() {
+export default function Directions({ selectedStation }) {
   return (
-    <div className="directionsWrapper">
+    <div className={styles.directionsWrapper}>
       {/* nav bar */}
-      {/* TODO: this should conditional render station name */}
+      <nav> {/* TODO: add navbar link here*/} </nav>
+
       {/* Main Content */}
-      <main className="directionsBody">
-        station name here
+      <main className={styles.directionsBody}>
+        {/* conditional render / onclick - not hardcoded */}
+        <div className={styles.directionsStationNameWrapper}>
+          <h1 className={styles.directionsStationName}>
+            {selectedStation?.name || "Selected Station"}
+          </h1>
+        </div>
         {/* -------- LEFT SECTION -------- */}
-        <section className="directionsLeftSection">
-          left section
-          <div className="directionsSearchWrapper">
-            <input
-              type="text"
-              placeholder="Search"
-              className="directionsSearchInput"
-              required
-            />
-            <input
-              type="text"
-              placeholder="Station Address"
-              className="directionsSearchInput"
-              required
-            />
-          </div>
-          {/* TODO: check with Rachel if her station card is reusable */}
-          {/* station card */}
-          <div>
-            <div>fuel</div>
-            <div>hours</div>
-            <div>service</div>
-          </div>
-        </section>
-        {/* -------- RIGHT SECTION -------- */}
-        <section className="directionsRightSection">
-          right section - map
-        </section>
+        <div className={styles.directionsSectionWrapper}>
+          <section className={styles.directionsLeftSection}>
+            left section
+            <div className={styles.directionsSearchWrapper}>
+              <input
+                type="text"
+                placeholder="Search"
+                className={styles.directionsSearchInput}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Station Address"
+                className={styles.directionsSearchInput}
+                required
+              />
+            </div>
+            {/* TODO: check with Rachel if her station card is reusable */}
+            {/* station card */}
+            <div className={styles.directionsStationCard}>
+              <div className={styles.directionsStationFuel}>fuel</div>
+              <div className={styles.directionsStationHours}>hours</div>
+              <div className={styles.directionsStationServices}>service</div>
+            </div>
+          </section>
+          {/* -------- RIGHT SECTION -------- */}
+          <section className={styles.directionsRightSection}>
+            right section - map
+          </section>
+        </div>
       </main>
 
       {/* -------- CTA -------- */}
-      <aside className="directionsCTAWrapper">
-        CTA here
-        <div></div>
-        <div className="directionsCTARightSection">
-          <h6>Z App</h6>
-          <p>
-            Sign up to Sharetank, the virtual fuel tank you can fill anytime,
-            anywhere and share with up to 5 friends or whānau
-          </p>
-        </div>
+      <aside className={styles.directionsCTAWrapper}>
+        {/* TODO: Add CTA links*/}
       </aside>
 
       {/* -------- FOOTER -------- */}
+      <footer className={styles.directionsFooter}>
+        {/* TODO: Add footer links */}
+      </footer>
     </div>
   );
 }
