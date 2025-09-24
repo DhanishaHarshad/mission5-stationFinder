@@ -1,5 +1,5 @@
 // define mongoose models
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // set z-energy station schema
 const zenergySchema = new mongoose.Schema({
@@ -85,4 +85,4 @@ zenergySchema.index({ "services.type": 1 });
 
 // define & export
 const ZEnergyStation = mongoose.model("ZEnergyStation", zenergySchema);
-module.exports = ZEnergyStation;
+export default ZEnergyStation;
