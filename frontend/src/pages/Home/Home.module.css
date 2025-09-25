@@ -1,0 +1,66 @@
+.heroBanner {
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+/* .heroBannerDiv {
+  display: flex;
+  width: 90rem;
+  height: 53.25rem;
+  padding: 2rem 10rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.5rem;
+} */
+
+.homeStyling {
+  background-color: black;
+  /* position: relative; */
+  justify-content: center;
+  /* align-items: center; */
+  padding: 0%;
+  left: 0%;
+  right: 0%;
+  /* gap: 0%; */
+}
+
+.homeMiddleSection {
+  background: var(--Neutral-Mist, #f8f8f8);
+}
+
+.homeMiddleSection p {
+  color: var(--Secondary-Indigo, #1e196a);
+  text-align: right;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 3.9rem;
+}
+
+.homeMiddleSection img {
+  width: 30.625rem;
+  height: 18.8125rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: lightgray 50% / cover no-repeat;
+  display: right;
+}
+
+.homeMiddleSection button {
+  display: flex;
+  width: 203px;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 128px;
+  background: var(--Secondary-Indigo, #1e196a);
+  color: var(--Neutral-White, #fff);
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%; /* 26px */
+}
