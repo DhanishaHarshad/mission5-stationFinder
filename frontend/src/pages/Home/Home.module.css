@@ -36,15 +36,17 @@
   font-style: normal;
   font-weight: 800;
   line-height: 3.9rem;
+  float: left;
 }
 
-.homeMiddleSection img {
+.ladyWithPhone {
   width: 30.625rem;
   height: 18.8125rem;
   flex-shrink: 0;
   border-radius: 0.5rem;
   background: lightgray 50% / cover no-repeat;
-  display: right;
+  /* float: right; */
+  border-radius: 8px;
 }
 
 .homeMiddleSection button {

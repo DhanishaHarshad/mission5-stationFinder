@@ -36,7 +36,7 @@ function Header() {
             <p>Rewards & Promotions</p>
           </li>
           <li>
-            <p>Find Station</p>
+            <a href="#">Find Station</a>
           </li>
         </ul>
       </div>
