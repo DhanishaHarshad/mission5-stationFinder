@@ -85,5 +85,4 @@ zenergySchema.index({ "services.type": 1 });
 
 // define & export
 const ZEnergyStation = mongoose.model("ZEnergyStation", zenergySchema);
-
 export default ZEnergyStation;
