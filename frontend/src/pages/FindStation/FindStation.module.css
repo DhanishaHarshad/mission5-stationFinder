@@ -27,7 +27,7 @@
 
 .findStationPage h3 {
     font-size: var(--heading-size-h3);
-    color: var(--white);
+    color: var(--Neutral-White);
     font-weight: bolder;
     margin-left: 10vw;
 }
@@ -41,7 +41,7 @@
 .stationContainer {
     flex: 1;
     padding: 10px 60px;
-    background-color: var(--grey-100);
+    background-color: var(--Neutral-Mist);
 }
 
 .stationContainer form {
@@ -67,7 +67,7 @@
     display: flex;
     overflow-y: scroll;
     padding: 1rem;
-    border: 2px solid var(--grey-200);
+    border: 2px solid var(--Neutral-Gray);
     overflow-y: scroll;
 }
 
@@ -83,7 +83,7 @@
     width: 25rem;
     border-radius: 12px;
     margin-left: 5rem;   
-    border-color: var(--orange);
+    border-color: var(--Primary-Orange);
     padding: 1rem;
     font-size: large;
 }
