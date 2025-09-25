@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Directions.module.css";
+import Map from "../FindStation/Map";
 
 export default function Directions({ selectedStation }) {
   return (
@@ -43,7 +44,7 @@ export default function Directions({ selectedStation }) {
           </section>
           {/* -------- RIGHT SECTION -------- */}
           <section className={styles.directionsRightSection}>
-            right section - map
+            <Map />
           </section>
         </div>
       </main>
