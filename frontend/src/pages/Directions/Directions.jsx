@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Directions.module.css";
-import Map from "../FindStation/Map";
+// import Map from "../../shared/map/Map";
 
 export default function Directions({ selectedStation }) {
   return (
