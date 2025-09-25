@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.findStationPage {
+    height: 100vh;
+    width: 100vw;
+}
+
+.findStationPage header {
+    height: 12vh;
+    width: 100vw;
+    padding-top: 1.5rem;
+    justify-items: center;
+    
+}
+
+.findStationPage .pageName {
+    height: 10vh;
+    width: 100vw;
+    background: linear-gradient(90deg, #F26522 0%, #FFCB08 100%);
+    display: flex;
+    align-items: center;
+}
+
+.findStationPage h3 {
+    font-size: var(--heading-size-h3);
+    color: var(--white);
+    font-weight: bolder;
+    margin-left: 10vw;
+}
+
+.findStationPage > .content {
+    display: flex;
+    height: 78vh;
+    width: 100vw;
+}
+
+.stationContainer {
+    flex: 1;
+    padding: 10px 60px;
+    background-color: var(--grey-100);
+}
+
+.stationContainer form {
+    position: sticky;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.mapContainer {
+    flex: 1;
+    background: skyblue;
+}
+
+.content .searchBar {
+    height: 8vh;
+}
+
+.content .stationCards {
+    height: 66vh;
+    width: 47vw;
+    display: flex;
+    overflow-y: scroll;
+    padding: 1rem;
+    border: 2px solid var(--grey-200);
+    overflow-y: scroll;
+}
+
+.searchBar {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.searchBar input {
+    height: 3rem;
+    width: 25rem;
+    border-radius: 12px;
+    margin-left: 5rem;   
+    border-color: var(--orange);
+    padding: 1rem;
+    font-size: large;
+}
+
+.searchBar img {
+    height: 3rem;
+    width: 5rem;
+}
+
