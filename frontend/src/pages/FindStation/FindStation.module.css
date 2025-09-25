@@ -42,10 +42,12 @@
     flex: 1;
     padding: 10px 60px;
     background-color: var(--Neutral-Mist);
-}
+    width: 50vw;
 
-.stationContainer form {
-    position: sticky;
+}
+.content {
+    background-color: pink;
+    width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -57,17 +59,20 @@
     background: skyblue;
 }
 
+
 .content .searchBar {
     height: 8vh;
 }
 
-.content .stationCards {
+.stationCards {
     height: 66vh;
-    width: 47vw;
+    width: 50vw;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     overflow-y: scroll;
     padding: 1rem;
-    border: 2px solid var(--Neutral-Gray);
+    border: 2px solid var(---Gray);
     overflow-y: scroll;
 }
 
