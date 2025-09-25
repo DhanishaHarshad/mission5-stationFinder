@@ -5,6 +5,12 @@ import Home from "../pages/Home/Home";
 import FindStation from "../pages/FindStation/FindStation";
 import Directions from "../pages/Directions/Directions";
 
+
+//=====================================
+import StationCard from "../shared/stationCard/StationCard"
+//=====================================
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,6 +24,12 @@ const router = createBrowserRouter([
     path: "/directions",
     Component: Directions,
   },
+//=====================================
+  {
+    path: "/station-card",
+    Component: StationCard,
+  }
+// =====================================
 ]);
 
 export default router;
