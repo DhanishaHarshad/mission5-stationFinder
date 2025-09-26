@@ -1,0 +1,13 @@
+.stationTitle h3{
+    padding: .5rem;
+    color: var(--Secondary-Indigo);
+    font-size: 36px; 
+    margin-left: .5rem;
+    width: 100%;
+}
+
+.stationTitle p {
+    padding-left: 1rem;
+    color: var(--Neutral-Black);
+    font-size: 11px;    
+}
