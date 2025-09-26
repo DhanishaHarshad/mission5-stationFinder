@@ -1,13 +1,12 @@
 .getDirections {
     display: flex;
     justify-content: center;
-    padding: .6rem;
+    padding: 1rem;
 }
 
 .getDirections button {
     height: 5vh;
-    width: 496px;
-    /* align-items: center; */
+    width: 35vw;
     border-radius: 128px;
     background: var(--Secondary-Indigo);
     color: var(--Neutral-White);
