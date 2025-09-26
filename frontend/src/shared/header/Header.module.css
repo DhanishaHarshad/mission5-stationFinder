@@ -30,37 +30,12 @@
 
 .bottomLeft {
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  flex-direction: row;
+  /* flex-grow: 1; */
+  justify-content: space-around;
+  /* width: 80%; */
   /* padding-bottom: 2px;
   align-items: center;
   gap: 8px;
   list-style-type: none; */
-}
-
-/* .zEnergyLogo {
-  height: 63.072px;
-  flex: 1 0 0;
-  aspect-ratio: 64/63.07;
-  /* margin: 10px; 
-}*/
-
-/* .heroBannerDiv {
-  display: flex;
-  width: 90rem;
-  height: 53.25rem;
-  align-items: flex-start;
-} */
-
-/* .line {
-  width: 70rem;
-  height: 0.0625rem;
-} */
-
-.zEnergyNav {
-  /* display: block; */
-  /* width: 80%; */
-  /* flex: 1 0 0; */
-  /* align-self: stretch; */
-  /* display: block; */
 }
