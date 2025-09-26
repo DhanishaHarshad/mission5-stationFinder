@@ -1,0 +1,25 @@
+/* Main div for the header only */
+.header {
+  display: flex;
+  width: 1440px;
+  /* padding: 16px 160px; */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  background-color: #fff;
+  justify-content: space-between;
+}
+
+/* the nav links in the header */
+.bottomLeft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+}
