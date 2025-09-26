@@ -1,6 +1,7 @@
 .heroBanner {
   flex: 1 0 0;
   align-self: stretch;
+  display: block;
 }
 
 /* .heroBannerDiv {
@@ -23,10 +24,12 @@
   left: 0%;
   right: 0%;
   /* gap: 0%; */
+  display: block;
 }
 
 .homeMiddleSection {
   background: var(--Neutral-Mist, #f8f8f8);
+  display: block;
 }
 
 .homeMiddleSection p {
@@ -37,6 +40,7 @@
   font-weight: 800;
   line-height: 3.9rem;
   float: left;
+  display: block;
 }
 
 .ladyWithPhone {
@@ -47,6 +51,7 @@
   background: lightgray 50% / cover no-repeat;
   /* float: right; */
   border-radius: 8px;
+  display: block;
 }
 
 .homeMiddleSection button {
@@ -65,4 +70,5 @@
   font-style: normal;
   font-weight: 800;
   line-height: 130%; /* 26px */
+  display: block;
 }

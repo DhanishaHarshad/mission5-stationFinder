@@ -3,15 +3,16 @@ import Styles from "./Header.module.css";
 
 //image import
 import ZEnergyLogo from "../../../public/assets/images/ZEnergyLogo.png";
+import CroppedHeaderImage from "../../../public/assets/images/CroppedHeader.png";
 
 function Header() {
   return (
     <div className={Styles.header}>
       {/* logo */}
-      <img src={ZEnergyLogo} alt="Z Energy Logo" className="zEnergyLogo" />
+      {/* <img src={ZEnergyLogo} alt="Z Energy Logo" className="zEnergyLogo" /> */}
 
       {/* top right */}
-      <div className={Styles.innerHeader}>
+      {/* <div className={Styles.innerHeader}>
         <div className={Styles.topRight}>
           <ul>
             <li>
@@ -22,10 +23,10 @@ function Header() {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
 
-      <line className={Styles.line} />
-
+      {/* <line className={Styles.line} /> */}
+      <img src={CroppedHeaderImage} alt="Header Image" className="zEnergyNav" />
       {/* bottom left navigation */}
       <div className={Styles.bottomLeft}>
         <ul>
@@ -36,7 +37,7 @@ function Header() {
             <p>Rewards & Promotions</p>
           </li>
           <li>
-            <a href="#">Find Station</a>
+            <a href="/find-station">Find Station</a>
           </li>
         </ul>
       </div>

@@ -19,7 +19,8 @@ export default function Home() {
   return (
     <div className={Styles.homeStyling}>
       {/* <Header /> */}
-      <img src={HeaderImage} />
+      {/* <img src={HeaderImage} /> */}
+      <Header />
 
       <div className={Styles.heroBannerDiv}>
         <img src={heroBanner} alt="Hero Banner" className={Styles.heroBanner} />

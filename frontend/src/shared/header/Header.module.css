@@ -29,7 +29,7 @@
 }
 
 .bottomLeft {
-  display: flex;
+  display: block;
   padding-bottom: 2px;
   align-items: center;
   gap: 8px;
@@ -53,4 +53,8 @@
 .line {
   width: 70rem;
   height: 0.0625rem;
+}
+
+.zEnergyNav {
+  display: block;
 }
