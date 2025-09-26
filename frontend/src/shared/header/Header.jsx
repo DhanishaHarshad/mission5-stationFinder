@@ -29,17 +29,13 @@ function Header() {
       <img src={CroppedHeaderImage} alt="Header Image" className="zEnergyNav" />
       {/* bottom left navigation */}
       <div className={Styles.bottomLeft}>
-        {/* <ul> */}
-        {/* <li> */}
+        <a></a>
         <a>At The Station</a>
-        {/* </li> */}
-        {/* <li> */}
+
         <a>Rewards & Promotions</a>
-        {/* </li> */}
-        {/* <li> */}
+
         <a href="/find-station">Find Station</a>
-        {/* </li> */}
-        {/* </ul> */}
+        <a></a>
       </div>
     </div>
   );
