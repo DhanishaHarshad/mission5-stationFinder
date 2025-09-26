@@ -38,7 +38,6 @@ export default function Home() {
           </button>
         </a>
         <img src={homeMiddleImage} className={Styles.ladyWithPhone} />
-        <div></div>
       </div>
       <img src={homeSectionThree} />
       <img src={homeSelectionFour} />
