@@ -1,7 +1,7 @@
 .header {
   display: flex;
   width: 1440px;
-  padding: 16px 160px;
+  /* padding: 16px 160px; */
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
@@ -29,19 +29,21 @@
 }
 
 .bottomLeft {
-  display: block;
-  padding-bottom: 2px;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  /* padding-bottom: 2px;
   align-items: center;
   gap: 8px;
-  list-style-type: none;
+  list-style-type: none; */
 }
 
-.zEnergyLogo {
+/* .zEnergyLogo {
   height: 63.072px;
   flex: 1 0 0;
   aspect-ratio: 64/63.07;
-  /* margin: 10px; */
-}
+  /* margin: 10px; 
+}*/
 
 /* .heroBannerDiv {
   display: flex;
@@ -50,11 +52,15 @@
   align-items: flex-start;
 } */
 
-.line {
+/* .line {
   width: 70rem;
   height: 0.0625rem;
-}
+} */
 
 .zEnergyNav {
-  display: block;
+  /* display: block; */
+  /* width: 80%; */
+  /* flex: 1 0 0; */
+  /* align-self: stretch; */
+  /* display: block; */
 }

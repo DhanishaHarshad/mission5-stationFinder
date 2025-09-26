@@ -31,10 +31,12 @@ export default function Home() {
         <p>We're There</p>
         <br />
         <p> Where You Need Us </p>
-        <button>
-          Find a Station
-          <img src={buttonArrow} className={Styles.homeArrowStyling} />
-        </button>
+        <a href="/find-station">
+          <button>
+            Find a Station
+            <img src={buttonArrow} className={Styles.homeArrowStyling} />
+          </button>
+        </a>
         <img src={homeMiddleImage} className={Styles.ladyWithPhone} />
         <div></div>
       </div>
