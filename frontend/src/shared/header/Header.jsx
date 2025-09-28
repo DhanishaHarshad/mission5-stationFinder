@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./Header.module.css";
 
-//image import
-// import ZEnergyLogo from "../../../public/assets/images/ZEnergyLogo.png";
-import CroppedHeaderImage from "../../../public/assets/images/CroppedHeader.png";
-
 function Header() {
   return (
     <div className={styles.header}>
-      <img src={CroppedHeaderImage} alt="Header Image" className="zEnergyNav" />
+      <img
+        src="/assets/images/CroppedHeader.png"
+        alt="Header Image"
+        className="zEnergyNav"
+      />
       {/* bottom left navigation */}
       <div className={styles.bottomLeft}>
         <a>At The Station</a>

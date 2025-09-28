@@ -44,15 +44,15 @@
 /* image of a z-energy employee holding a cellphone */
 .ladyWithPhone {
   width: 30.625rem;
-  height: 18.8125rem;
+  height: 18.825rem;
   flex-shrink: 0;
   border-radius: 0.5rem;
   background: lightgray 50% / cover no-repeat;
-  border-radius: 8px;
 }
 .imageDiv {
   display: flex;
   padding: 10rem 10rem 10rem 1.5rem;
   justify-content: center;
   align-items: center;
+  height: 37.5rem;
 }

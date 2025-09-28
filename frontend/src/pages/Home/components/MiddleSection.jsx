@@ -1,8 +1,4 @@
 import React from "react";
-
-import homeMiddleImage from "../../../../public/assets/images/HomeMiddleImage.png";
-import buttonArrow from "../../../../public/assets/icons/misc/HomeArrow.png";
-
 import styles from "./MiddleSection.module.css";
 
 function MiddleSection() {
@@ -14,14 +10,14 @@ function MiddleSection() {
         <a href="/find-station">
           <button>
             Find a Station
-            <img src={buttonArrow} />
+            <img src="/assets/icons/misc/HomeArrow.png" />
           </button>
         </a>
       </div>
       <div className={styles.imageDiv}>
         {" "}
         <img
-          src={homeMiddleImage}
+          src="/assets/images/HomeMiddleImage.png"
           className={styles.ladyWithPhone}
           alt="image of a z-energy employee holding a cellphone"
         />

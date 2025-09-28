@@ -12,14 +12,18 @@
 .bottomLeft {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  /* align-items: left; */
+  /* align-content: flex-start; */
+  /* justify-content: space-evenly; */
   color: var(--Neutral-Black, #1b1b1b);
   font-size: 1rem;
   font-style: normal;
   font-weight: 600;
   line-height: 130%; /* 1.3rem */
-  width: 34.1875rem;
+  width: 70rem;
+  /* align-content: left; */
+  gap: 3rem;
+  /* align-self: stretch; */
 }
 
 /* the actual navagation bar */
