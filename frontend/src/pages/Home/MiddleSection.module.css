@@ -1,0 +1,64 @@
+.homeMiddleSectionText {
+  color: var(--Secondary-Indigo, #1e196a);
+  text-align: right;
+
+  /* Z Energy/Desktop/H2 */
+  font-family: Inter;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 3.9rem;
+  align-self: stretch;
+  background: var(--Neutral-Mist, #f8f8f8);
+}
+
+.middleSection button {
+  display: flex;
+  width: 12.6875rem;
+  padding: 0.625rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 128px;
+  background: var(--Secondary-Indigo, #1e196a);
+  color: var(--Neutral-White, #fff);
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%; /* 26px */
+  float: right;
+  border: none;
+}
+
+.middleSection {
+  display: flex;
+  /* width: 90rem; */
+  /* height: 37.5rem; */
+  /* padding: 0 10rem 1.5rem 10rem; */
+  justify-content: center;
+  align-items: center;
+  /* gap: 2rem; */
+  background: var(--Neutral-Mist, #f8f8f8);
+}
+
+.ladyWithPhone {
+  width: 30.625rem;
+  height: 18.8125rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: lightgray 50% / cover no-repeat;
+  /* float: right; */
+  border-radius: 8px;
+}
+
+.imageDiv {
+  display: flex;
+  /* width: 90rem; */
+  /* height: 37.5rem; */
+  padding: 10rem 10rem 10rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  /* gap: 2rem; */
+}

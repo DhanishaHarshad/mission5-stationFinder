@@ -1,13 +1,14 @@
 /* Main div for the header only */
 .header {
   display: flex;
-  width: 1440px;
+  /* width: 90rem; */
   /* padding: 16px 160px; */
   flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
+  align-items: center;
+  /* gap: 16px; */
   background-color: #fff;
   justify-content: space-between;
+  padding: 1rem 10rem;
 }
 
 /* the nav links in the header */
@@ -16,10 +17,24 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
+  /* width: 50%; */
+  /* align-items: left; */
+  /* gap: 3rem; */
+  /* list-style: none; */
+  /* margin: 0; */
+  /* padding-bottom: 1.5rem; */
+  color: var(--Neutral-Black, #1b1b1b);
+  /* font-family: Inter; */
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 1.3rem */
+  /* text-decoration: none; */
+  width: 34.1875rem;
+}
+
+.zEnergyNav {
+  padding: 1rem 10rem;
+  width: 90rem;
   align-items: center;
-  gap: 8px;
-  list-style: none;
-  margin: 0;
-  padding: 8px;
 }
