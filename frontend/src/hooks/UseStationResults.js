@@ -12,9 +12,9 @@ export const useStationResults = () => {
     const getStations = async () => {
       try {
         const response = await fetch(apiUrl)
-        if(!response.ok) throw new error("Failed to fetch stations")
+        if(!response.ok) throw new error(`Failed to fetch stations: ${response.status} ${response.statusText}`)
 
-        const data = response.json()
+        const data = await response.json()
         setStations(data)
       } catch (error) {
         setError(error.message)
@@ -23,7 +23,7 @@ export const useStationResults = () => {
       }
     }
     getStations()
-  }, [])
+  }, [apiUrl])
 
   return { stations, loading, error }
 }

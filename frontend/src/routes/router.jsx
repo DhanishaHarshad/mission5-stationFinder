@@ -8,7 +8,6 @@ import Directions from "../pages/Directions/Directions";
 
 //=====================================
 import StationCard from "../shared/stationCard/StationCard"
-import testGetStations from "../test/testGetStations";
 //=====================================
 
 
@@ -30,10 +29,7 @@ const router = createBrowserRouter([
     path: "/station-card",
     Component: StationCard,
   },
-  {
-    path: "/test",
-    Component: testGetStations,
-  },
+
 // =====================================
 ]);
 
