@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./Directions.module.css";
-// import Map from "../../shared/map/Map";
+import Map from "../../shared/map/Map";
+import backIconButton from "/assets/icons/misc/BackDefault.png";
+import plusIconButton from "/assets/icons/misc/AddDefault.png";
 
 export default function Directions({ selectedStation }) {
   return (
@@ -19,8 +21,15 @@ export default function Directions({ selectedStation }) {
         {/* -------- LEFT SECTION -------- */}
         <div className={styles.directionsSectionWrapper}>
           <section className={styles.directionsLeftSection}>
-            left section
             <div className={styles.directionsSearchWrapper}>
+              {/* TODO: on click it will bring back to find station */}
+              <button className={styles.diectionsBackIconButton}>
+                <img
+                  src={backIconButton}
+                  alt="back-icon"
+                  className={styles.directionsIconImg}
+                />
+              </button>
               <input
                 type="text"
                 placeholder="Search"
@@ -33,13 +42,18 @@ export default function Directions({ selectedStation }) {
                 className={styles.directionsSearchInput}
                 required
               />
+              <button className={styles.directionsPlusIconButton}>
+                <img
+                  src={plusIconButton}
+                  alt="plus-icon"
+                  className={styles.directionsIconImg}
+                />
+              </button>
             </div>
-            {/* TODO: check with Rachel if her station card is reusable */}
+            {/* TODO: import station cards here */}
             {/* station card */}
             <div className={styles.directionsStationCard}>
-              <div className={styles.directionsStationFuel}>fuel</div>
-              <div className={styles.directionsStationHours}>hours</div>
-              <div className={styles.directionsStationServices}>service</div>
+              station card here
             </div>
           </section>
           {/* -------- RIGHT SECTION -------- */}
@@ -61,3 +75,8 @@ export default function Directions({ selectedStation }) {
     </div>
   );
 }
+
+// pseudo for enable location onclick:
+// 1. when user clicked enable location
+// 2. trigger user to enable location
+// 3.
