@@ -1,3 +1,6 @@
+/* NAV BAR */
+
+/* BODY */
 .directionsStationNameWrapper {
   background: linear-gradient(
     90deg,
@@ -6,13 +9,15 @@
   );
   color: var(--Neutral-White);
   display: flex;
-  width: 90rem;
+  width: 100%;
   padding: 3rem 10rem;
   flex-direction: column;
   align-items: self-start;
   gap: 0.5rem;
+  margin: 0;
 }
 
+/* LEFT SECTION */
 .directionsSectionWrapper {
   display: flex;
   flex-direction: row;
@@ -27,36 +32,75 @@
 .directionsSearchWrapper {
   /* layout */
   display: flex;
-  width: 30rem;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  max-width: 30rem;
   gap: 1rem;
+  width: 100%;
 }
 
+.directionsInputRow {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+/* Apply only to second input */
+.directionsInputRow:nth-child(2) .directionsSearchInput {
+  margin-left: calc(1.75rem + 0.75rem); /* match icon width + spacing */
+}
+
+.directionsBackIconWrapper {
+  display: flex;
+  align-items: center;
+}
 .directionsSearchInput {
   /* layout */
-  display: flex;
+  flex: 1;
+  /* display: flex; */
+  flex-direction: column;
   padding: 0.75rem 1rem;
-  align-items: center;
-  gap: 0.5rem;
-  align-self: stretch;
 
   /* style */
   border-radius: 0.875rem;
   border: 1px solid var(--Neutral-Mist, #f8f8f8);
   background: var(--Neutral-Mist, #f8f8f8);
   box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.25);
+  width: 100%;
 }
 
+.directionsBackIconRow {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.directionsPlusIconButton {
+  position: absolute;
+  right: -2rem;
+  top: -10%;
+  transform: translateY(-50%);
+}
+.directionsBackIconButton,
+.directionsPlusIconButton {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.directionsBackIconButton {
+  margin-right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* RIGHT SECTION */
 .directionsRightSection {
   width: 50%;
   min-height: 40vh;
 }
 
-.directionsSearchWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 50%;
-}
+/* CTA */
+
+/* FOOTER */
