@@ -24,6 +24,31 @@
   width: 50%;
 }
 
+.directionsSearchWrapper {
+  /* layout */
+  display: flex;
+  width: 30rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.directionsSearchInput {
+  /* layout */
+  display: flex;
+  padding: 0.75rem 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: stretch;
+
+  /* style */
+  border-radius: 0.875rem;
+  border: 1px solid var(--Neutral-Mist, #f8f8f8);
+  background: var(--Neutral-Mist, #f8f8f8);
+  box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
 .directionsRightSection {
   width: 50%;
   min-height: 40vh;
