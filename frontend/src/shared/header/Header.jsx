@@ -11,12 +11,9 @@ function Header() {
       <img src={CroppedHeaderImage} alt="Header Image" className="zEnergyNav" />
       {/* bottom left navigation */}
       <div className={styles.bottomLeft}>
-        {/* <a></a> */}
         <a>At The Station</a>
         <a>Rewards & Promotions</a>
         <a href="/find-station">Find Station</a>
-        {/* <a></a> */}
-        {/* <a></a> */}
       </div>
       <div className={styles.bottomLeft}></div>
     </div>

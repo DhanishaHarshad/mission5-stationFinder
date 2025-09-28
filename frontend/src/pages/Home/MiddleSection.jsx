@@ -20,7 +20,11 @@ function MiddleSection() {
       </div>
       <div className={styles.imageDiv}>
         {" "}
-        <img src={homeMiddleImage} className={styles.ladyWithPhone} />
+        <img
+          src={homeMiddleImage}
+          className={styles.ladyWithPhone}
+          alt="image of a z-energy employee holding a cellphone"
+        />
       </div>
     </div>
   );
