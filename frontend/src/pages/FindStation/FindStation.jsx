@@ -1,5 +1,7 @@
 import styles from "./FindStation.module.css";
 import StationCard from "../../shared/stationCard/StationCard";
+import Filter from "../../shared/filter/Filter";
+
 export default function FindStation() {
   return (
     <main className={styles.findStationPage}>
@@ -14,10 +16,12 @@ export default function FindStation() {
           <form className={styles.searchBar}>
             <label>Search Placeholder</label>
             <input type="text" placeholder="search location" />
+
             <img
               src="/assets/filters/D-FilterDefault.png"
               alt="filter button"
             />
+            <Filter />
           </form>
           <section className={styles.stationCards}>
             <StationCard />
