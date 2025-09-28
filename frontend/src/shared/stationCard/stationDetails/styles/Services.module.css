@@ -1,0 +1,22 @@
+.servicesContainer {
+    padding: .5rem;
+    text-align: center;
+    height: 25vh;
+    border-bottom: 0.5px solid var(--Neutral-Gray);
+}
+.servicesContainer h4 {
+    font-size: 12px;
+}
+
+.servicesAvailable {
+    display: flex;
+    padding: 5px;
+    gap: .5rem;
+
+}
+
+.servicesAvailable img {
+    height: 3rem;
+    width: 3rem;
+    
+}

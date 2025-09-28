@@ -28,7 +28,8 @@ const router = createBrowserRouter([
   {
     path: "/station-card",
     Component: StationCard,
-  }
+  },
+
 // =====================================
 ]);
 
