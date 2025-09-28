@@ -17,6 +17,17 @@
   margin: 0;
 }
 
+.directionsStationName {
+  color: #fff;
+
+  /* Z Energy/Desktop/H1 */
+  font-family: Inter;
+  font-size: 3.375rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 130%; /* 4.3875rem */
+}
+
 /* LEFT SECTION */
 .directionsSectionWrapper {
   display: flex;
@@ -102,6 +113,21 @@
   height: 100%;
 }
 
+.directionsStationCard {
+  margin-top: 2rem;
+  padding: 0.5rem;
+}
+.directionsStationCardHeaders {
+  /* Typography */
+  color: var(--Secondary-Indigo, #1e196a);
+
+  /* Z Energy/Desktop/H3 */
+  font-family: Inter;
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 130%; /* 2.925rem */
+}
 /* RIGHT SECTION */
 .directionsRightSection {
   width: 50%;
