@@ -32,13 +32,16 @@ export default function Directions({ selectedStation }) {
               {/* "back" icon and search bar */}
               <div className={styles.directionsInputRow}>
                 <div className={styles.directionsBackIconWrapper}>
-                  <button className={styles.directionsBackIconButton}>
-                    <img
-                      src={backIconButton}
-                      alt="back-icon"
-                      className={styles.directionsIconImg}
-                    />
-                  </button>
+                  {/* link to find station page */}
+                  <a href="/find-station">
+                    <button className={styles.directionsBackIconButton}>
+                      <img
+                        src={backIconButton}
+                        alt="back-icon"
+                        className={styles.directionsIconImg}
+                      />
+                    </button>
+                  </a>
                 </div>
 
                 <input
@@ -74,7 +77,12 @@ export default function Directions({ selectedStation }) {
             </div>
             {/* TODO: import station cards here */}
             {/* station card */}
-            <div className={styles.directionsStationCard}></div>
+            <div className={styles.directionsStationCard}>
+              {" "}
+              <h3 className={styles.directionsStationCardHeaders}>Fuel</h3>
+              <h3 className={styles.directionsStationCardHeaders}>Hours</h3>
+              <h3 className={styles.directionsStationCardHeaders}>Services</h3>
+            </div>
           </section>
           {/* ---------------------------------------------- */}
           {/*                RIGHT SECTION                   */}
