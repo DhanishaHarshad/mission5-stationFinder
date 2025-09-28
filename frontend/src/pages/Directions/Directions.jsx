@@ -3,6 +3,8 @@ import styles from "./Directions.module.css";
 import Map from "../../shared/map/Map";
 import backIconButton from "/assets/icons/misc/BackDefault.png";
 import plusIconButton from "/assets/icons/misc/AddDefault.png";
+import myLocationIcon from "/assets/icons/map/MyLocationDefault.png";
+import searchLocationIcon from "/assets/icons/map/SearchLocationDefault.png";
 
 export default function Directions({ selectedStation }) {
   return (
@@ -38,12 +40,16 @@ export default function Directions({ selectedStation }) {
                     />
                   </button>
                 </div>
+
                 <input
                   type="text"
                   placeholder="Search"
                   className={styles.directionsSearchInput}
                   required
                 />
+                <button className={styles.directionsLocationIcon}>
+                  <img src={myLocationIcon} alt="location-icon" />
+                </button>
               </div>
 
               {/* "plus" icon + station address */}
@@ -54,6 +60,9 @@ export default function Directions({ selectedStation }) {
                   className={styles.directionsSearchInput}
                   required
                 />
+                <button className={styles.directionsLocationIcon}>
+                  <img src={searchLocationIcon} alt="locate-station-icon" />
+                </button>
                 <button className={styles.directionsPlusIconButton}>
                   <img
                     src={plusIconButton}
@@ -65,9 +74,7 @@ export default function Directions({ selectedStation }) {
             </div>
             {/* TODO: import station cards here */}
             {/* station card */}
-            <div className={styles.directionsStationCard}>
-              station card here
-            </div>
+            <div className={styles.directionsStationCard}></div>
           </section>
           {/* ---------------------------------------------- */}
           {/*                RIGHT SECTION                   */}
