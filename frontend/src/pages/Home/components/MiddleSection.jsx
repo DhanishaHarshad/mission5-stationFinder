@@ -1,7 +1,7 @@
 import React from "react";
 
-import homeMiddleImage from "../../../public/assets/images/HomeMiddleImage.png";
-import buttonArrow from "../../../public/assets/icons/misc/HomeArrow.png";
+import homeMiddleImage from "../../../../public/assets/images/HomeMiddleImage.png";
+import buttonArrow from "../../../../public/assets/icons/misc/HomeArrow.png";
 
 import styles from "./MiddleSection.module.css";
 

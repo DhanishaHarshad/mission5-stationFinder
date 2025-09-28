@@ -2,8 +2,8 @@
 import React from "react";
 
 import Header from "../../shared/header/Header";
-import Banner from "./Banner";
-import MiddleSection from "./MiddleSection";
+import Banner from "./components/Banner";
+import MiddleSection from "./components/MiddleSection";
 import ShareTank from "../../shared/shareTank/shareTank";
 import Footer from "../../shared/footer/Footer";
 import styles from "./Home.module.css";
