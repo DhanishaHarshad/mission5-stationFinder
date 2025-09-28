@@ -1,0 +1,42 @@
+.fuelsContainer {
+  padding: 1rem;
+  width: 45vw;
+  border-bottom: 0.5px solid var(--Neutral-Gray);
+}
+
+.fuelGroup {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding-bottom: 0.2rem;
+}
+
+.fuelsContainer img {
+  height: 20px;
+  width: 20px;
+}
+
+.fuelSection {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.3rem;
+  height: 12vh;
+  width: 40vw;
+  background-color: var(--Neutral-Light-Gray);
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.fuelsContainer p {
+  font-size: 12px;
+  color: var(--Neutral-Black);
+  text-align: center;
+}
+.fuelsContainer h6 {
+  font-size: 16px;
+}
+
+.lastUpdated {
+  text-align: center;
+}

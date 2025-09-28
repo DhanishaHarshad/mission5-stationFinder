@@ -1,0 +1,16 @@
+.stationCardContainer {
+    display: block;
+    height: 100%;
+    width: 45vw;
+    border: 2px solid var(--Neutral-Light-Gray);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.22);
+}
+
+/* ___ REMOVE: when operating hours component is finished ___ */
+.stationCardContainer p {
+    padding: 0 0 .5rem 1rem;
+    color: var(--Green);
+    font-size: 11px;
+}
+
