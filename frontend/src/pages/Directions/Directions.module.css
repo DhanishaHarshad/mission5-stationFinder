@@ -23,10 +23,12 @@
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  background: var(--Neutral-White, #fff);
 }
 
 .directionsLeftSection {
   width: 50%;
+  padding-left: 8rem;
 }
 
 .directionsSearchWrapper {
@@ -36,6 +38,7 @@
   max-width: 30rem;
   gap: 1rem;
   width: 100%;
+  padding-top: 2rem;
 }
 
 .directionsInputRow {
@@ -60,6 +63,7 @@
   /* display: flex; */
   flex-direction: column;
   padding: 0.75rem 1rem;
+  padding-left: 2.5rem;
 
   /* style */
   border-radius: 0.875rem;
@@ -69,9 +73,12 @@
   width: 100%;
 }
 
-.directionsBackIconRow {
-  display: flex;
-  justify-content: flex-start;
+.directionsLocationIcon {
+  position: absolute;
+  background-color: transparent;
+  border: transparent;
+  left: 3.25rem;
+  cursor: pointer;
 }
 
 .directionsPlusIconButton {
