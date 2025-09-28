@@ -5,18 +5,23 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 
 import ZEnergyStation from "./src/models/ZEnergySchema.js";
+import { connectDB } from "./src/config/connectDb.js";
 
 dotenv.config();
 
 const app = express();
-
+connectDB()
+// =============================================================================
+// ___ COMMENTED OUT AND HAVE MOVED DB CONNECTION TO CONFIG FOLDER ____
 //connect to MongoDB
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+// mongoose
+//   .connect(process.env.MONGO_URI)
+//   .then(() => console.log("MongoDB connected"))
+//   .catch((err) => console.error("MongoDB connection error:", err));
 
-const Station = mongoose.model("z-energy-stations", ZEnergyStation.schema);
+// const Station = mongoose.model("z-energy-stations", ZEnergyStation.schema);
+// =============================================================================
+
 
 //middleware to parse JSON bodies
 app.use(express.json());
@@ -59,7 +64,7 @@ app.get("/stations", async (req, res) => {
       },
     ];
 
-    const results = await Station.aggregate(pipeline);
+    const results = await ZEnergyStation.aggregate(pipeline);
     res.json(results);
   } catch (err) {
     res.status(500).json({ error: err.message });
