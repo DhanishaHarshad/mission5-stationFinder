@@ -55,6 +55,10 @@ padding: 5px;
     width: 50vw;
 
 }
+
+.stationCount {
+    text-align: center;
+}
 .content {
     background-color: pink;
     width: 100%;
@@ -67,6 +71,9 @@ padding: 5px;
 .mapContainer {
     flex: 1;
     background: skyblue;
+    justify-content: center;
+    justify-items: center;
+   
 }
 
 
@@ -78,6 +85,7 @@ padding: 5px;
     height: 68vh;
     width: 50vw;
     display: flex;
+    gap: 5rem;
     flex-direction: column;
     align-items: flex-start;
     overflow-y: scroll;

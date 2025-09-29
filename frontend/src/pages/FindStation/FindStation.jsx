@@ -1,15 +1,18 @@
 import styles from "./FindStation.module.css";
 import StationCard from "../../shared/stationCard/StationCard";
-import Header from "../../shared/header/Header"
-
-
+import Header from "../../shared/header/Header";
+import { useStationResults } from "../../hooks/UseStationResults";
+import { formatStation } from "../../utils/formatStation";
+import Map from "../../shared/map/Map"
 
 export default function FindStation() {
+  const { stations } = useStationResults();
+  const formattedStations = stations.map(formatStation)
   
   return (
     <main className={styles.findStationPage}>
       <header className={styles.header}>
-        <Header/>
+        <Header />
       </header>
       <div className={styles.pageName}>
         <h3>Find Station</h3>
@@ -24,12 +27,15 @@ export default function FindStation() {
               alt="filter button"
             />
           </form>
+          <p className={styles.stationCount}> {stations.length} Stations Found</p>
           <section className={styles.stationCards}>
-            <StationCard />
+            {formattedStations.map(station => (
+              <StationCard key={station.id} station={station}/>
+            ))}
           </section>
         </section>
         <section className={styles.mapContainer}>
-          <h3>MAP</h3>
+          <Map/>
         </section>
       </section>
     </main>
