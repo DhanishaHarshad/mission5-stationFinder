@@ -1,63 +1,116 @@
 import React from "react";
 import styles from "./Directions.module.css";
-// import Map from "../../shared/map/Map";
+import Map from "../../shared/map/Map";
+import backIconButton from "/assets/icons/misc/BackDefault.png";
+import plusIconButton from "/assets/icons/misc/AddDefault.png";
+import myLocationIcon from "/assets/icons/map/MyLocationDefault.png";
+import searchLocationIcon from "/assets/icons/map/SearchLocationDefault.png";
 
 export default function Directions({ selectedStation }) {
   return (
     <div className={styles.directionsWrapper}>
-      {/* nav bar */}
+      {/* ---------------------------------------------- */}
+      {/*                    NAV BAR                     */}
+      {/* ---------------------------------------------- */}
       <nav> {/* TODO: add navbar link here*/} </nav>
 
-      {/* Main Content */}
+      {/* ---------------------------------------------- */}
+      {/*                      BODY                      */}
+      {/* ---------------------------------------------- */}
       <main className={styles.directionsBody}>
-        {/* conditional render / onclick - not hardcoded */}
         <div className={styles.directionsStationNameWrapper}>
           <h1 className={styles.directionsStationName}>
             {selectedStation?.name || "Selected Station"}
           </h1>
         </div>
-        {/* -------- LEFT SECTION -------- */}
+        {/* ---------------------------------------------- */}
+        {/*                 LEFT SECTION                   */}
+        {/* ---------------------------------------------- */}
         <div className={styles.directionsSectionWrapper}>
           <section className={styles.directionsLeftSection}>
-            left section
             <div className={styles.directionsSearchWrapper}>
-              <input
-                type="text"
-                placeholder="Search"
-                className={styles.directionsSearchInput}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Station Address"
-                className={styles.directionsSearchInput}
-                required
-              />
+              {/* "back" icon and search bar */}
+              <div className={styles.directionsInputRow}>
+                <div className={styles.directionsBackIconWrapper}>
+                  {/* link to find station page */}
+                  <a href="/find-station">
+                    <button className={styles.directionsBackIconButton}>
+                      <img
+                        src={backIconButton}
+                        alt="back-icon"
+                        className={styles.directionsIconImg}
+                      />
+                    </button>
+                  </a>
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className={styles.directionsSearchInput}
+                  required
+                />
+                <button className={styles.directionsLocationIcon}>
+                  <img src={myLocationIcon} alt="location-icon" />
+                </button>
+              </div>
+
+              {/* "plus" icon + station address */}
+              <div className={styles.directionsInputRow}>
+                <input
+                  type="text"
+                  placeholder="Station Address"
+                  className={styles.directionsSearchInput}
+                  required
+                />
+                <button className={styles.directionsLocationIcon}>
+                  <img src={searchLocationIcon} alt="locate-station-icon" />
+                </button>
+                <button className={styles.directionsPlusIconButton}>
+                  <img
+                    src={plusIconButton}
+                    alt="plus-icon"
+                    className={styles.directionsIconImg}
+                  />
+                </button>
+              </div>
             </div>
-            {/* TODO: check with Rachel if her station card is reusable */}
+            {/* TODO: import station cards here */}
             {/* station card */}
             <div className={styles.directionsStationCard}>
-              <div className={styles.directionsStationFuel}>fuel</div>
-              <div className={styles.directionsStationHours}>hours</div>
-              <div className={styles.directionsStationServices}>service</div>
+              {" "}
+              <h3 className={styles.directionsStationCardHeaders}>Fuel</h3>
+              <h3 className={styles.directionsStationCardHeaders}>Hours</h3>
+              <h3 className={styles.directionsStationCardHeaders}>Services</h3>
             </div>
           </section>
-          {/* -------- RIGHT SECTION -------- */}
+          {/* ---------------------------------------------- */}
+          {/*                RIGHT SECTION                   */}
+          {/* ---------------------------------------------- */}
           <section className={styles.directionsRightSection}>
             <Map />
           </section>
         </div>
       </main>
 
-      {/* -------- CTA -------- */}
+      {/* ---------------------------------------------- */}
+      {/*                      CTA                       */}
+      {/* ---------------------------------------------- */}
       <aside className={styles.directionsCTAWrapper}>
         {/* TODO: Add CTA links*/}
       </aside>
 
-      {/* -------- FOOTER -------- */}
+      {/* ---------------------------------------------- */}
+      {/*                     FOOTER                     */}
+      {/* ---------------------------------------------- */}
       <footer className={styles.directionsFooter}>
         {/* TODO: Add footer links */}
       </footer>
     </div>
   );
 }
+
+// pseudo for enable location onclick:
+// 1. when user clicked enable location
+// 2. trigger user to enable location
+// 3.
