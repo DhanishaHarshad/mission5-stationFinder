@@ -1,0 +1,10 @@
+/* this is the div for the hero banner */
+.heroBannerDiv {
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  /* gap: 0.5rem; */
+  background-color: brown;
+}
