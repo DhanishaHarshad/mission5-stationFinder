@@ -1,16 +1,14 @@
 /* main div for the home.jsx page */
 .homeStyling {
-  justify-content: center;
-  left: 0%;
-  right: 0%;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  width: 90rem;
+  align-items: center;
+  padding: 0%;
+  margin: 0%;
+  /* block-size: 100rem; */
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-}
-/* removing the styling on the text links */
-.homeStyling a {
-  text-decoration: none;
-  color: var(--Neutral-Black, #1b1b1b);
+  background-color: blue;
 }
