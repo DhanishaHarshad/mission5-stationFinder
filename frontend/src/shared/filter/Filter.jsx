@@ -26,21 +26,20 @@ function Filter() {
   const [loading, setLoading] = useState(true);
 
   const [selectedServices, setSelectedServices] = useState([]);
-  const [setDropdownOpen] = useState(false);
-
-  //fetch the stations dynamically
-  useEffect(() => {
-    fetchStations();
-  }, []);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const fetchStations = async (filters = {}) => {
     setLoading(true);
     const params = new URLSearchParams(filters).toString();
-    const url = `http://localhost:4000/stations?${params}`;
+    const url = params
+      ? `http://localhost:4000/stations?${params}`
+      : `http://localhost:4000/stations`; //  no dangling ?
+
     console.log("fetching", url);
 
     try {
       const res = await fetch(url);
+      if (!res.ok) throw new Error(`Error: ${res.status}`);
       const data = await res.json();
       setStations(data);
     } catch (err) {
@@ -50,11 +49,17 @@ function Filter() {
     }
   };
 
+  //fetch the stations dynamically
+  useEffect(() => {
+    fetchStations();
+  }, []);
+
   const applyFilters = () => {
     const filters = {};
     if (selectedServices.length > 0) {
-      filters.services = selectedServices.join(".");
+      filters.services = selectedServices.join(",");
     }
+
     fetchStations(filters);
     setDropdownOpen(false);
   };
@@ -67,46 +72,46 @@ function Filter() {
     );
   };
 
-  // useEffect(() => {
-  //   fetchStations({}); //this will load it all on the first render!
-  // }, []);
-
   return (
     <div style={{ padding: "2rem" }}>
       {/* Dropdown */}
       <div style={{ position: "relative", marginBottom: "1rem" }}>
-        <button onClick={() => setDropdownOpen((prev) => !prev)}>
-          Filter by Services
+        <button type="button" onClick={() => setDropdownOpen((prev) => !prev)}>
+          Filter
         </button>
-        dropdownOpen && (
-        <div
-          style={{
-            position: "absolute",
-            background: "#fff",
-            border: "1px solid #ccc",
-            padding: "1rem",
-            width: "250px",
-            zIndex: 100,
-          }}
-        >
-          {ALL_SERVICES.map((service) => (
-            <label key={service} style={{ display: "block" }}>
-              <input
-                type="checkbox"
-                checked={selectedServices.includes(service)}
-                onChange={() => toggleService(service)}
-              />
-              {service}
-            </label>
-          ))}
-          <button style={{ marginTop: "0.5rem" }} onClick={applyFilters}>
-            Apply Filters
-          </button>
-        </div>
-        )
+        {dropdownOpen && (
+          <div
+            style={{
+              position: "absolute",
+              background: "#fff",
+              border: "1px solid #ccc",
+              padding: "1rem",
+              width: "250px",
+              zIndex: 100,
+            }}
+          >
+            {ALL_SERVICES.map((service) => (
+              <label key={service} style={{ display: "block" }}>
+                <input
+                  type="checkbox"
+                  checked={selectedServices.includes(service)}
+                  onChange={() => toggleService(service)}
+                />
+                {service}
+              </label>
+            ))}
+            <button
+              type="button"
+              style={{ marginTop: "0.5rem" }}
+              onClick={applyFilters}
+            >
+              Apply Filters
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Results */}
+      {/* Results  THIS IS JUST FILLER FOR NOW SO I COULD SEE THE RESULTS*/}
       {loading ? (
         <p>Loading stations...</p>
       ) : stations.length === 0 ? (

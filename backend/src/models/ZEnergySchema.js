@@ -84,5 +84,9 @@ zenergySchema.index({ "fuel_prices.type": 1 });
 zenergySchema.index({ "services.type": 1 });
 
 // define & export
-const ZEnergyStation = mongoose.model("ZEnergyStation", zenergySchema, "zStationInfo");
+const ZEnergyStation = mongoose.model(
+  "zEnergyStation",
+  zenergySchema,
+  "zStationInfo"
+);
 export default ZEnergyStation;
