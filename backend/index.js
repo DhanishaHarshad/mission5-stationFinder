@@ -6,7 +6,7 @@ import morgan from "morgan";
 
 import ZEnergyStation from "./src/models/ZEnergySchema.js";
 import { connectDB } from "./src/config/connectDb.js";
-import { getStations } from "./src/controllers/getStationController.js";
+import { getStationById, getStations } from "./src/controllers/getStationController.js";
 
 dotenv.config();
 
@@ -85,6 +85,7 @@ app.get("/stations", async (req, res) => {
 });
 
 app.use("/api", getStations)
+app.use("/api", getStationById)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

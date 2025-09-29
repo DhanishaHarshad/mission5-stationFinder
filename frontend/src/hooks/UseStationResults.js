@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 const apiUrl = import.meta.env.VITE_STATION_API
 
-
 export const useStationResults = () => {
 
   const [stations, setStations] = useState([])
