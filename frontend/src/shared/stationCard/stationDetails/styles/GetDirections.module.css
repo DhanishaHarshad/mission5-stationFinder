@@ -11,9 +11,10 @@
     background: var(--Secondary-Indigo);
     color: var(--Neutral-White);
     border-color: none;
-    
+    cursor: pointer;
 }
 
 .getDirections button:hover {
     background-color: var(--Secondary-Mid-Indigo);
+    cursor: pointer;
 }
