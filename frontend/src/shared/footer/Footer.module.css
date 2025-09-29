@@ -1,0 +1,11 @@
+.footerDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+}
+
+.footerDiv img {
+  width: 100%;
+  height: auto;
+}

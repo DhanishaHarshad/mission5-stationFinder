@@ -1,9 +1,13 @@
 import styles from "./FindStation.module.css";
 import StationCard from "../../shared/stationCard/StationCard";
+
 import Header from "../../shared/header/Header";
 import { useStationResults } from "../../hooks/UseStationResults";
 import { formatStation } from "../../utils/formatStation";
 import Map from "../../shared/map/Map"
+
+import Filter from "../../shared/filter/Filter";
+
 
 export default function FindStation() {
   const { stations } = useStationResults();
@@ -22,10 +26,12 @@ export default function FindStation() {
           <form className={styles.searchBar}>
             <label>Search Placeholder</label>
             <input type="text" placeholder="search location" />
+
             <img
               src="/assets/filters/D-FilterDefault.png"
               alt="filter button"
             />
+            <Filter />
           </form>
           <p className={styles.stationCount}> {stations.length} Stations Found</p>
           <section className={styles.stationCards}>

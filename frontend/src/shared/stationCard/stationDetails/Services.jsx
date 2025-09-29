@@ -1,4 +1,5 @@
 import styles from "./styles/Services.module.css";
+
 import { formatServices } from "../../../utils/serviceIcons.js";
 
 export default function Services({ services }) {
@@ -37,6 +38,9 @@ export default function Services({ services }) {
           );
         })}
       </section>
+
+      <section className={styles.servicesAvailable}></section>
+
     </main>
   );
 }
