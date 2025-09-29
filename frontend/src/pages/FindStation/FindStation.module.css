@@ -9,13 +9,23 @@
     width: 100vw;
 }
 
-.findStationPage header {
-    height: 12vh;
-    width: 100vw;
-    padding-top: 1.5rem;
-    justify-items: center;
-    
+.header {
+padding: 5px;
+  height: 12vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: white; /* optional for contrast */
 }
+
+.header img {
+  object-fit: cover;
+  max-height: 50%;
+  max-width: 50%;
+}
+
 
 .findStationPage .pageName {
     height: 10vh;
@@ -65,7 +75,7 @@
 }
 
 .stationCards {
-    height: 66vh;
+    height: 68vh;
     width: 50vw;
     display: flex;
     flex-direction: column;

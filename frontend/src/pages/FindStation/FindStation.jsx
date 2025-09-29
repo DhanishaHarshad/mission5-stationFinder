@@ -1,10 +1,15 @@
 import styles from "./FindStation.module.css";
 import StationCard from "../../shared/stationCard/StationCard";
+import Header from "../../shared/header/Header"
+
+
+
 export default function FindStation() {
+  
   return (
     <main className={styles.findStationPage}>
-      <header>
-        <h1>Header</h1>
+      <header className={styles.header}>
+        <Header/>
       </header>
       <div className={styles.pageName}>
         <h3>Find Station</h3>
