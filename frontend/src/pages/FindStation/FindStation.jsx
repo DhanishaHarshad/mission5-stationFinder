@@ -17,10 +17,10 @@ export default function FindStation() {
             <label>Search Placeholder</label>
             <input type="text" placeholder="search location" />
 
-            <img
+            {/* <img
               src="/assets/filters/D-FilterDefault.png"
               alt="filter button"
-            />
+            /> */}
             <Filter />
           </form>
           <section className={styles.stationCards}>

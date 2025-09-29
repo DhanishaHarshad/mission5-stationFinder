@@ -1,0 +1,49 @@
+.buttonDiv {
+  position: "relative";
+  /* margin-bottom: "1rem"; */
+  /* height: 3rem; */
+  /* width: 5rem; */
+}
+
+.buttonDiv img {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--Primary-Orange, #f26522);
+}
+
+.buttonDiv button {
+  border: none;
+  /* border-bottom: 0.5rem; */
+  /* background-color: none; */
+  /* color: none; */
+  /* box-shadow: none; */
+  border-radius: 0.875rem;
+  background: var(--Primary-Orange, #f26522);
+  display: flex;
+  padding: 0.75rem 1rem;
+  align-items: center;
+  /* gap: 0.5rem; */
+  /* color: white; */
+  color: var(--Neutral-White, #fff);
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 1.40625rem */
+}
+.dropdownDiv {
+  display: flex;
+  width: 20rem;
+  max-width: 20rem;
+  padding: 1rem;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: flex-start; */
+  gap: 0.625rem;
+  border-radius: 1rem;
+  border: 1px solid var(--Neutral-Light-Gray, #e6e6e6);
+  background: var(--Neutral-White, #fff);
+  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.24);
+  /* z-index: 1000; */
+}

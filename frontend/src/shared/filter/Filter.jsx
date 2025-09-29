@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import styles from "./Filter.module.css";
 
 const ALL_SERVICES = [
   "EV_fast_charging",
@@ -73,42 +74,37 @@ function Filter() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className={styles.filteringDiv}>
       {/* Dropdown */}
-      <div style={{ position: "relative", marginBottom: "1rem" }}>
+      <div className={styles.buttonDiv}>
         <button type="button" onClick={() => setDropdownOpen((prev) => !prev)}>
+          <img src="/assets/filters/FilterIcon.png" />
           Filter
         </button>
-        {dropdownOpen && (
-          <div
-            style={{
-              position: "absolute",
-              background: "#fff",
-              border: "1px solid #ccc",
-              padding: "1rem",
-              width: "250px",
-              zIndex: 100,
-            }}
-          >
-            {ALL_SERVICES.map((service) => (
-              <label key={service} style={{ display: "block" }}>
-                <input
-                  type="checkbox"
-                  checked={selectedServices.includes(service)}
-                  onChange={() => toggleService(service)}
-                />
-                {service}
-              </label>
-            ))}
-            <button
-              type="button"
-              style={{ marginTop: "0.5rem" }}
-              onClick={applyFilters}
-            >
-              Apply Filters
-            </button>
-          </div>
-        )}
+        <div className={styles.dropdownMenuDiv}>
+          {dropdownOpen && (
+            <div className={styles.dropdownDiv}>
+              {ALL_SERVICES.map((service) => (
+                <label key={service} style={{ display: "block" }}>
+                  <input
+                    type="checkbox"
+                    checked={selectedServices.includes(service)}
+                    onChange={() => toggleService(service)}
+                  />
+                  {service}
+                </label>
+              ))}
+
+              <button
+                type="button"
+                style={{ marginTop: "0.5rem" }}
+                onClick={applyFilters}
+              >
+                Apply Filter
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Results  THIS IS JUST FILLER FOR NOW SO I COULD SEE THE RESULTS*/}
