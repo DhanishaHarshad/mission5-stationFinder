@@ -3,12 +3,8 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 
 const containerStyle = { width: "44rem", height: "53.5rem" };
 const mapDisplayOptions = {
-  // zoomControl: false,
-  // streetViewControl: false,
-  // mapTypeControl: false,
-  // fullscreenControl: false,
-  disableDefaultUI: true, // disables all controls
-  clickableIcons: false,
+  disableDefaultUI: true, // disables= all UI controls
+  clickableIcons: false, // disable POI
 };
 
 const defaultCenter = {
