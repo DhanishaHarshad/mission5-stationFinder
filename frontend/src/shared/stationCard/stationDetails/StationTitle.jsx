@@ -1,11 +1,10 @@
 import styles from "./styles/StationTitle.module.css"
 
-export default function StationTitle() {
+export default function StationTitle({ name, address }) {
   return (
     <main className={styles.stationTitle}>
-        {/*___ DYNAMICALLY render station name and address from db ___  */}
-      <h3>Z Station</h3>
-      <p>Address</p>
+      <h3>{ name }</h3>
+      <p>{ address }</p>
     </main>
   )
 }

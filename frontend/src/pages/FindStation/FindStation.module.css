@@ -9,13 +9,23 @@
     width: 100vw;
 }
 
-.findStationPage header {
-    height: 12vh;
-    width: 100vw;
-    padding-top: 1.5rem;
-    justify-items: center;
-    
+.header {
+padding: 5px;
+  height: 12vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: white; /* optional for contrast */
 }
+
+.header img {
+  object-fit: cover;
+  max-height: 50%;
+  max-width: 50%;
+}
+
 
 .findStationPage .pageName {
     height: 10vh;
@@ -45,6 +55,10 @@
     width: 50vw;
 
 }
+
+.stationCount {
+    text-align: center;
+}
 .content {
     background-color: pink;
     width: 100%;
@@ -57,6 +71,9 @@
 .mapContainer {
     flex: 1;
     background: skyblue;
+    justify-content: center;
+    justify-items: center;
+   
 }
 
 
@@ -65,9 +82,10 @@
 }
 
 .stationCards {
-    height: 66vh;
+    height: 68vh;
     width: 50vw;
     display: flex;
+    gap: 5rem;
     flex-direction: column;
     align-items: flex-start;
     overflow-y: scroll;

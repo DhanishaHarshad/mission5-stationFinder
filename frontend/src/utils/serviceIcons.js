@@ -1,51 +1,59 @@
 export const formatServices = [
     {
-        serviceName: "EV_fast_charging",
+        service_type: "EV_fast_charging",
         icon: "/assets/icons/services/EVCharging.png"
     },
     {
-        serviceName: "Zexpress_coffee_and_food",
+        service_type:"EV_ultra_fast_charging",
+        icon: "/assets/icons/services/EVCharging.png"
+    },
+    {
+        service_type: "Zexpress_coffee_and_food",
         icon: "/assets/icons/services/ZExpress.png"
     },
     {
-        serviceName: "f'real",
-        icon: "/assets/icons/services/F-real.png"
+        service_type: "f'real",
+        icon: "/assets/icons/services/F-Real.png"
     },
     {
-        serviceName: "preorder_coffee",
-        icon: "/assets/icons/services/PreorderCoffee.png"
+        service_type: "preorder_coffee",
+        icon: "/assets/icons/services/PreOrderCoffee.png"
     },
     {
-        serviceName: "atm",
+        service_type: "atm",
         icon: "/assets/icons/services/ATM.png"
     },
     {
-        serviceName: "LPG_bottle_swap",
+        service_type: "LPG_bottle_swap",
         icon: "/assets/icons/services/LPGBottleSwap.png"
     },
     {
-        serviceName: "restrooms",
+        service_type: "restrooms",
         icon: "/assets/icons/services/Restrooms.png"
     },
     {
-        serviceName: "recycling",
+        service_type: "recycling",
         icon: "/assets/icons/services/Recycling.png"
     },
     {
-        serviceName: "trailer_hire",
+        service_type: "trailer_hire",
         icon: "/assets/icons/services/TrailerHire.png"
     },
     {
-        serviceName: "wifi",
-        icon: "/assets/icons/services/Wifi.png"
+        service_type: "wifi",
+        icon: "/assets/icons/services/WIFI.png"
     },
     {
-        serviceName: "car_wash",
+        service_type: "car_wash",
         icon: "/assets/icons/services/CarWash.png"
     },
     {
-        serviceName: "tyre_pressure",
+        service_type: "tyre_pressure",
         icon: "/assets/icons/services/TyrePressure.png"
+    },
+    {
+        service_type: "super_long_hoses",
+        icon: "/assets/icons/services/SuperLongHoses.png"
     },
 
 ] 

@@ -1,6 +1,6 @@
 .stationCardContainer {
     display: block;
-    height: 100%;
+    height: 76vh;
     width: 45vw;
     border: 2px solid var(--Neutral-Light-Gray);
     border-radius: 10px;
