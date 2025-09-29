@@ -1,33 +1,40 @@
 import styles from "./styles/Fuels.module.css";
-import { useStationResults } from "../../../hooks/UseStationResults";
+import { formatLastUpdated } from "../../../utils/formatLastUpdated";
 
+export default function Fuels({ fuelPrices }) {
+  const fuelIcons = {
+    "91": "/assets/icons/fuel/FuelGreen.png",
+    "95": "/assets/icons/fuel/FuelRed.png",
+    "diesel": "/assets/icons/fuel/FuelBlack.png",
+  };
+  const lastUpdatedTimestamp =
+    fuelPrices.length > 0 ? fuelPrices[0].lastUpdated : null;
 
-export default function Fuels() {
-  const { stations, loading, error } = useStationResults()
-  
-    if(loading) return <p>Loading stations...</p>
-    if(error) return <p>Error loading stations...</p>
+  const lastUpdatedText = formatLastUpdated(lastUpdatedTimestamp);
 
   return (
     <main className={styles.fuelsContainer}>
       <div className={styles.fuelGroup}>
-        <section className={styles.fuelSection}>
-          <img src="/assets/icons/fuel/FuelGreen.png" alt="fuel-icon" />
-          <p>Fuel name</p>
-          <h6>$2.50</h6>
-        </section>
-        <section className={styles.fuelSection}>
-          <img src="/assets/icons/fuel/FuelRed.png" alt="fuel-icon" />
-          <p>Fuel name</p>
-          <h6>$2.50</h6>
-        </section>
-        <section className={styles.fuelSection}>
-          <img src="/assets/icons/fuel/FuelBlack.png" alt="fuel-icon" />
-          <p>Fuel name</p>
-          <h6>$2.50</h6>
-        </section>
+        {fuelPrices.map((fuel) => {
+          const fuelType = fuel.type;
+          const fuelIcon = fuelIcons[fuelType];
+          const fuelName = fuelType === "diesel" ? "Diesel" : fuelType;
+          const formattedPrice = `$${
+            fuel.price ? fuel.price.toFixed(2) : "--"
+          }`;
+
+          return (
+            <section className={styles.fuelSection} key={fuel.type}>
+              <img src={ fuelIcon } alt={`${ fuelType } fuel icon`}></img>
+              <p>{` ${ fuelName } `}</p>
+              <h6>{ formattedPrice }</h6>
+            </section>
+          );
+        })}
       </div>
-      <p className={styles.lastUpdated}>Last Updated ... hours ago</p>
+      <p className={styles.lastUpdated}>
+        Last Updated { lastUpdatedText }
+      </p>
     </main>
   );
 }
