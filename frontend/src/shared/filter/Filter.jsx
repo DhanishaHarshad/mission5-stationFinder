@@ -26,7 +26,7 @@ function Filter() {
   const [loading, setLoading] = useState(true);
 
   const [selectedServices, setSelectedServices] = useState([]);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [setDropdownOpen] = useState(false);
 
   //fetch the stations dynamically
   useEffect(() => {
