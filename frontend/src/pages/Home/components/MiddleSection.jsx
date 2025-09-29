@@ -7,12 +7,14 @@ function MiddleSection() {
       <div>
         <p className={styles.homeMiddleSectionText}>We're There</p>
         <p className={styles.homeMiddleSectionText}>Where You Need Us</p>
-        <a href="/find-station">
-          <button>
-            Find a Station
-            <img src="/assets/icons/misc/HomeArrow.png" />
-          </button>
-        </a>
+        <div className={styles.buttonDiv}>
+          <a href="/find-station">
+            <button>
+              Find a Station
+              <img src="/assets/icons/misc/HomeArrow.png" />
+            </button>
+          </a>
+        </div>
       </div>
       <div className={styles.imageDiv}>
         {" "}

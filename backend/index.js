@@ -26,7 +26,7 @@ connectDB();
 // =============================================================================
 
 //middleware to parse JSON bodies
-app.use(cors({ origin: "https://localhost:3000" })); // allow the react dev server
+app.use(cors({ origin: "https://localhost:5173" })); // allow the react dev server
 app.use(express.json());
 app.use(
   cors({
@@ -105,5 +105,5 @@ app.get("/stations", async (req, res) => {
 
 app.use("/api", getStations);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

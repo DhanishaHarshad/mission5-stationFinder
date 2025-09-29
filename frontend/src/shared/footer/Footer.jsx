@@ -1,8 +1,8 @@
-import Styles from "./Footer.module.css";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <div>
+    <div className={styles.footerDiv}>
       <img src="/assets/images/Footer.png" />
     </div>
   );
