@@ -1,5 +1,43 @@
 .operatingHoursContainer {
-    padding: 1rem;
-    width: 40vw;
+  padding: 1rem;
+  width: 40vw;
 }
 
+.operatingHoursContainer h4 {
+    padding-bottom: 10px;
+    color: var(--Green);
+}
+
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.iconOpen {
+  transform: rotate(180deg);
+}
+
+.hoursList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.hoursList.open {
+  max-height: 46vh; 
+}
+
+.hoursItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
