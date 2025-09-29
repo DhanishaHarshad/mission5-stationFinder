@@ -1,0 +1,23 @@
+/* this is the div for the hero banner */
+.heroBannerDiv {
+  display: flex;
+  /* width: 90rem; */
+  /* height: 53.25rem; */
+  /* padding: 2rem 10rem; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.5rem;
+  /* background: linear-gradient(
+    90deg,
+    rgba(242, 101, 34, 0.6) 0%,
+    rgba(255, 161, 58, 0.6) 100%
+  ); */
+  /* flex: 1 0 0; */
+  /* align-self: stretch; */
+  /* position: absolute; */
+}
+/* .heroBanner {
+  flex: 1 0 0;
+  align-self: stretch;
+} */
