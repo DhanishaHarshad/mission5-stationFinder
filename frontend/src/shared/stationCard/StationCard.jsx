@@ -5,15 +5,24 @@ import Fuels from "./stationDetails/Fuels"
 import Services from "./stationDetails/Services"
 import GetDirections from "./stationDetails/GetDirections"
 
-export default function StationCard() {
+export default function StationCard({ station }) {
+ 
   return (
     <main className={styles.stationCardContainer}>
-      <StationTitle />
+      <StationTitle 
+        name={station.name}
+        address={station.address}
+      />
       {/* ___ CONDITIONALLY render open 24 hours || open now */}
-      <p>Operating Hours</p>
-      <hr />
-      <Fuels/>
-      <Services/>
+      <OperatingHours
+        operatingHours={station.openingHours}
+      />
+      <Fuels
+        fuelPrices={station.fuelPrices}
+      />
+      <Services
+        services={station.services}
+      />
       <GetDirections/>
     </main>
   )
