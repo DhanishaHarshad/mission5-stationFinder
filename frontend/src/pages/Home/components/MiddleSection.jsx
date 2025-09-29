@@ -17,7 +17,6 @@ function MiddleSection() {
         </div>
       </div>
       <div className={styles.imageDiv}>
-        {" "}
         <img
           src="/assets/images/HomeMiddleImage.png"
           className={styles.ladyWithPhone}
