@@ -1,22 +1,45 @@
 .servicesContainer {
     padding: .5rem;
     text-align: center;
-    height: 25vh;
+    height: 14vh;
     border-bottom: 0.5px solid var(--Neutral-Gray);
+    overflow-y: scroll;
 }
 .servicesContainer h4 {
-    font-size: 12px;
+    position: sticky;
+    top: 0;
+    font-size: 18px;
+    background-color: var(--Neutral-Mist);
 }
 
 .servicesAvailable {
-    display: flex;
-    padding: 5px;
-    gap: .5rem;
-
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem;
+    gap: 0.5rem;
 }
 
 .servicesAvailable img {
-    height: 3rem;
-    width: 3rem;
-    
+    height: 1rem;
+    width: 1rem;
+}
+
+.serviceItem {
+    padding: 5px;
+    background-color: var(--Neutral-Light-Gray);
+    height: 2rem;
+    width: 16rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.serviceName {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 16px;
 }
