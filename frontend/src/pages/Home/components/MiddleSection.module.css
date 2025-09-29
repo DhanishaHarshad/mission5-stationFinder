@@ -1,0 +1,58 @@
+/* this is the main div */
+.middleSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--Neutral-Mist, #f8f8f8);
+}
+
+/* the text on the page */
+.homeMiddleSectionText {
+  color: var(--Secondary-Indigo, #1e196a);
+  text-align: right;
+
+  /* Z Energy/Desktop/H2 */
+  font-family: Inter;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 3.9rem;
+  align-self: stretch;
+  background: var(--Neutral-Mist, #f8f8f8);
+}
+/* the button on the page */
+.middleSection button {
+  display: flex;
+  width: 12.6875rem;
+  padding: 0.625rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 128px;
+  background: var(--Secondary-Indigo, #1e196a);
+  color: var(--Neutral-White, #fff);
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%; /* 26px */
+  float: right;
+  border: none;
+}
+
+/* image of a z-energy employee holding a cellphone */
+.ladyWithPhone {
+  width: 30.625rem;
+  height: 18.825rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: lightgray 50% / cover no-repeat;
+}
+.imageDiv {
+  display: flex;
+  padding: 10rem 10rem 10rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  height: 37.5rem;
+}
