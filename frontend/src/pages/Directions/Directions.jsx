@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Directions.module.css";
 import Map from "../../shared/map/Map";
 import backIconButton from "/assets/icons/misc/BackDefault.png";
@@ -6,7 +6,43 @@ import plusIconButton from "/assets/icons/misc/AddDefault.png";
 import myLocationIcon from "/assets/icons/map/MyLocationDefault.png";
 import searchLocationIcon from "/assets/icons/map/SearchLocationDefault.png";
 
-export default function Directions({ selectedStation }) {
+export default function Directions({ selectedStation, userLocation }) {
+  const [location, setLocation] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [stationAddress, setStationAddress] = useState("");
+
+  // Get user location via browser
+  const handleLocationClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+          setUserLocation({ lat: coords.latitude, lng: coords.longitude });
+        },
+        (error) => console.error("Geolocation error:", error.message)
+      );
+    }
+  };
+
+  // Normalize input
+  const normalizeInput = (input) => input.trim().toLowerCase();
+
+  // Trigger search on Enter
+  const handleSearchKeyDown = (e) => {
+    if (e.key === "Enter") {
+      const query = normalizeInput(searchQuery);
+      if (query) {
+        // TODO: geocode query and update userLocation
+      }
+    }
+  };
+
+  // Trigger directions when both points are ready
+  useEffect(() => {
+    if (userLocation && selectedStation?.location) {
+      // TODO: call Google Maps Directions API
+    }
+  }, [userLocation, selectedStation]);
+
   return (
     <div className={styles.directionsWrapper}>
       {/* ---------------------------------------------- */}
@@ -48,7 +84,9 @@ export default function Directions({ selectedStation }) {
                   type="text"
                   placeholder="Search"
                   className={styles.directionsSearchInput}
-                  required
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  onKeyDown={handleSearchKeyDown}
                 />
                 <button className={styles.directionsLocationIcon}>
                   <img src={myLocationIcon} alt="location-icon" />
@@ -61,7 +99,8 @@ export default function Directions({ selectedStation }) {
                   type="text"
                   placeholder="Station Address"
                   className={styles.directionsSearchInput}
-                  required
+                  onChange={(event) => setStationAddress(event.target.value)}
+                  value={selectedStation?.address || ""}
                 />
                 <button className={styles.directionsLocationIcon}>
                   <img src={searchLocationIcon} alt="locate-station-icon" />
@@ -88,7 +127,10 @@ export default function Directions({ selectedStation }) {
           {/*                RIGHT SECTION                   */}
           {/* ---------------------------------------------- */}
           <section className={styles.directionsRightSection}>
-            <Map />
+            <Map
+              userLocation={location}
+              stationLocation={selectedStation?.location}
+            />
           </section>
         </div>
       </main>
