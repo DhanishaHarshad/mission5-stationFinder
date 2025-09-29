@@ -4,12 +4,14 @@
   justify-content: center;
   align-items: center;
   background: var(--Neutral-Mist, #f8f8f8);
+  width: 100%;
 }
 
 /* the text on the page */
 .homeMiddleSectionText {
   color: var(--Secondary-Indigo, #1e196a);
-  text-align: right;
+  /* text-align: right; */
+  /* float: right; */
 
   /* Z Energy/Desktop/H2 */
   font-family: Inter;
@@ -17,42 +19,60 @@
   font-style: normal;
   font-weight: 800;
   line-height: 3.9rem;
-  align-self: stretch;
+  /* align-self: stretch; */
   background: var(--Neutral-Mist, #f8f8f8);
+  display: flex;
+  justify-content: right;
+}
+
+.buttonDiv {
+  display: flex;
+  /* align-items: right; */
+  justify-content: right;
+}
+
+.buttonDiv a {
+  text-decoration: none;
 }
 /* the button on the page */
 .middleSection button {
   display: flex;
   width: 12.6875rem;
   padding: 0.625rem 1rem;
-  justify-content: center;
-  align-items: center;
+  justify-content: right;
+  align-items: right;
   gap: 0.5rem;
   border-radius: 128px;
   background: var(--Secondary-Indigo, #1e196a);
   color: var(--Neutral-White, #fff);
-  text-align: center;
+  /* text-align: center; */
   font-family: Inter;
   font-size: 20px;
   font-style: normal;
   font-weight: 800;
   line-height: 130%; /* 26px */
-  float: right;
+  /* float: right; */
   border: none;
 }
 
 /* image of a z-energy employee holding a cellphone */
 .ladyWithPhone {
-  width: 30.625rem;
-  height: 18.825rem;
-  flex-shrink: 0;
+  display: flex;
+  align-items: left;
+  /* width: 30.625rem; */
+  /* height: 18.825rem; */
+  /* flex-shrink: 1; */
   border-radius: 0.5rem;
   background: lightgray 50% / cover no-repeat;
+  width: 30.625rem;
+  height: 18.8125rem;
 }
 .imageDiv {
   display: flex;
-  padding: 10rem 10rem 10rem 1.5rem;
-  justify-content: center;
-  align-items: center;
-  height: 37.5rem;
+  padding: 10rem 0rem 10rem 01.25rem;
+  justify-content: left;
+  align-items: left;
+  /* height: 37.5rem; */
+  /* width: 30.625rem; */
+  /* height: 18.8125rem; */
 }
