@@ -5,6 +5,8 @@
 }
 
 .getDirections button {
+    display: flex;
+    justify-content: center;
     height: 5vh;
     width: 35vw;
     border-radius: 128px;
@@ -12,8 +14,15 @@
     color: var(--Neutral-White);
     border-color: none;
     cursor: pointer;
+    font-size: var(--font-size-lg);
+    padding: 10px;
 }
 
+.getDirections img {
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-left: 20px;
+}
 .getDirections button:hover {
     background-color: var(--Secondary-Mid-Indigo);
     cursor: pointer;
