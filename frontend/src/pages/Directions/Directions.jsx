@@ -5,11 +5,12 @@ import backIconButton from "/assets/icons/misc/BackDefault.png";
 import plusIconButton from "/assets/icons/misc/AddDefault.png";
 import myLocationIcon from "/assets/icons/map/MyLocationDefault.png";
 import searchLocationIcon from "/assets/icons/map/SearchLocationDefault.png";
+import axios from "axios";
 
-export default function Directions({ selectedStation, userLocation }) {
-  const [location, setLocation] = useState(null);
+export default function Directions({ selectedStation }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [stationAddress, setStationAddress] = useState("");
+  const [userLocation, setUserLocation] = useState(null); // initialy map component owns userLocation and pass in a prop but have refactored it and Direction component is the parent
 
   // Get user location via browser
   const handleLocationClick = () => {
@@ -26,12 +27,51 @@ export default function Directions({ selectedStation, userLocation }) {
   // Normalize input
   const normalizeInput = (input) => input.trim().toLowerCase();
 
+  // TODO: test first then create an endpoint in the backend for security and reusability
+  const geocodeAddress = async (address) => {
+    const normalized = normalizeInput(address);
+    const url = `http://localhost:3000/geocode?address=${encodeURIComponent(
+      normalized
+    )}`;
+
+    try {
+      const { data } = await axios.get(url);
+      console.log("📦 Raw geocode response:", data);
+      return data;
+    } catch (err) {
+      console.error(
+        "Geocoding error:",
+        err.response?.data?.error || err.message
+      );
+      return null;
+    }
+  };
+
   // Trigger search on Enter
-  const handleSearchKeyDown = (e) => {
+  const handleSearchKeyDown = async (e) => {
     if (e.key === "Enter") {
       const query = normalizeInput(searchQuery);
-      if (query) {
-        // TODO: geocode query and update userLocation
+      if (!query) return;
+
+      try {
+        const raw = await geocodeAddress(query);
+        console.log("📦 Raw geocode response:", raw); // ✅ Debug log
+
+        const coords = raw?.location;
+
+        if (
+          coords &&
+          typeof coords.lat === "number" &&
+          typeof coords.lng === "number" &&
+          isFinite(coords.lat) &&
+          isFinite(coords.lng)
+        ) {
+          setUserLocation(coords);
+        } else {
+          console.warn("🤔 Invalid geocode result:", coords);
+        }
+      } catch (err) {
+        console.error("❌ Geocode lookup failed:", err.message);
       }
     }
   };
@@ -99,8 +139,8 @@ export default function Directions({ selectedStation, userLocation }) {
                   type="text"
                   placeholder="Station Address"
                   className={styles.directionsSearchInput}
-                  onChange={(event) => setStationAddress(event.target.value)}
                   value={selectedStation?.address || ""}
+                  readOnly
                 />
                 <button className={styles.directionsLocationIcon}>
                   <img src={searchLocationIcon} alt="locate-station-icon" />
@@ -128,7 +168,7 @@ export default function Directions({ selectedStation, userLocation }) {
           {/* ---------------------------------------------- */}
           <section className={styles.directionsRightSection}>
             <Map
-              userLocation={location}
+              userLocation={userLocation}
               stationLocation={selectedStation?.location}
             />
           </section>
@@ -151,8 +191,3 @@ export default function Directions({ selectedStation, userLocation }) {
     </div>
   );
 }
-
-// pseudo for enable location onclick:
-// 1. when user clicked enable location
-// 2. trigger user to enable location
-// 3.
