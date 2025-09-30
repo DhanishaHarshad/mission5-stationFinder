@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "react-scripts test"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,10 @@
     "express-validator": "^7.2.1",
     "mongoose": "^8.18.1",
     "morgan": "^1.10.1",
+    "react-scripts": "^5.0.1",
     "regex": "^6.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }
