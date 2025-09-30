@@ -6,7 +6,7 @@ const containerStyle = { width: "44rem", height: "53.5rem" };
 const mapDisplayOptions = {
   disableDefaultUI: true, // disables= all UI controls
   clickableIcons: false, // disable POI
-  mapId: "30ace7b739a80248fc4b21a4",
+  mapId: import.meta.env.VITE_GOOGLE_MAP_ID_KEY, // custom map styling
 };
 
 const defaultCenter = {
@@ -26,20 +26,25 @@ export default function Map({ userLocation, stationLocation }) {
   // Trigger pan and marker drop when userLocation updates
   useEffect(() => {
     const dropMarker = async () => {
+      // validate user location and contain numeric coords
       if (
         !userLocation ||
         typeof userLocation.lat !== "number" ||
         typeof userLocation.lng !== "number" ||
         !mapRef.current
       ) {
-        console.warn("Invalid userLocation or map not ready:", userLocation);
+        console.log(
+          "❌ hey! Invalid user's location OR map is not ready:",
+          userLocation
+        );
         return;
       }
 
       const { lat, lng } = userLocation;
 
+      // pan the map to user's location
       mapRef.current.panTo({ lat, lng });
-
+      // import advanced marker (formally marker) from google map library
       const { AdvancedMarkerElement } = await google.maps.importLibrary(
         "marker"
       );
@@ -47,15 +52,16 @@ export default function Map({ userLocation, stationLocation }) {
       new AdvancedMarkerElement({
         map: mapRef.current,
         position: { lat, lng },
-        title: "You are here",
+        // title: "You are here",
       });
     };
-
+    // drop marker when both user location and map is ready
     if (isMapReady && userLocation) {
       dropMarker();
     }
   }, [userLocation, isMapReady]);
 
+  // TODO: refactor this userEffect as it similar to drop marker
   useEffect(() => {
     const dropStationMarker = async () => {
       if (

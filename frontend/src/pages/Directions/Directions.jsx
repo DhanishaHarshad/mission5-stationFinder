@@ -24,10 +24,10 @@ export default function Directions({ selectedStation }) {
     }
   };
 
-  // Normalize input
+  // normalize input
   const normalizeInput = (input) => input.trim().toLowerCase();
 
-  // TODO: test first then create an endpoint in the backend for security and reusability
+  // sends geocode to the backend
   const geocodeAddress = async (address) => {
     const normalized = normalizeInput(address);
     const url = `http://localhost:3000/geocode?address=${encodeURIComponent(
@@ -47,7 +47,7 @@ export default function Directions({ selectedStation }) {
     }
   };
 
-  // Trigger search on Enter
+  // Trigger search on "enter"
   const handleSearchKeyDown = async (e) => {
     if (e.key === "Enter") {
       const query = normalizeInput(searchQuery);
@@ -128,7 +128,10 @@ export default function Directions({ selectedStation }) {
                   onChange={(event) => setSearchQuery(event.target.value)}
                   onKeyDown={handleSearchKeyDown}
                 />
-                <button className={styles.directionsLocationIcon}>
+                <button
+                  className={styles.directionsLocationIcon}
+                  onClick={handleLocationClick}
+                >
                   <img src={myLocationIcon} alt="location-icon" />
                 </button>
               </div>
