@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Directions.module.css";
-import Map from "../../shared/map/Map";
+import axios from "axios";
+
+// import icons
 import backIconButton from "/assets/icons/misc/BackDefault.png";
 import plusIconButton from "/assets/icons/misc/AddDefault.png";
 import myLocationIcon from "/assets/icons/map/MyLocationDefault.png";
 import searchLocationIcon from "/assets/icons/map/SearchLocationDefault.png";
-import axios from "axios";
 
+// imports for shared components
+import Header from "../../shared/header/Header";
+import ShareTank from "../../shared/shareTank/shareTank";
+import Footer from "../../shared/footer/Footer";
+
+//imports for station card and map
+import Map from "../../shared/map/Map";
 import Fuels from "../../shared/stationCard/stationDetails/Fuels";
+import OperatingHours from "../../shared/stationCard/stationDetails/OperatingHours";
+import Services from "../../shared/stationCard/stationDetails/Services";
 import { useStationResults } from "../../hooks/UseStationResults";
 
 export default function Directions({ selectedStation }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [stationAddress, setStationAddress] = useState("");
   const [userLocation, setUserLocation] = useState(null); // initialy map component owns userLocation and pass in a prop but have refactored it and Direction component is the parent
-  const { station, isLoading, error } = useStationResults();
+  const { station } = useStationResults();
+  console.log("🧪 station:", station);
 
   // Get user location via browser
   const handleLocationClick = () => {
@@ -34,7 +45,7 @@ export default function Directions({ selectedStation }) {
   // sends geocode to the backend
   const geocodeAddress = async (address) => {
     const normalized = normalizeInput(address);
-    const url = `http://localhost:3000/geocode?address=${encodeURIComponent(
+    const url = `http://localhost:4000/geocode?address=${encodeURIComponent(
       normalized
     )}`;
 
@@ -92,7 +103,7 @@ export default function Directions({ selectedStation }) {
       {/* ---------------------------------------------- */}
       {/*                    NAV BAR                     */}
       {/* ---------------------------------------------- */}
-      <nav> {/* TODO: add navbar link here*/} </nav>
+      <Header />
 
       {/* ---------------------------------------------- */}
       {/*                      BODY                      */}
@@ -184,7 +195,9 @@ export default function Directions({ selectedStation }) {
                 </div>
               </div>
             ) : (
-              <p>no station selected</p>
+              <div>
+                <p>no station selected</p>
+              </div>
             )}
           </section>
           {/* ---------------------------------------------- */}
@@ -202,15 +215,14 @@ export default function Directions({ selectedStation }) {
       {/* ---------------------------------------------- */}
       {/*                      CTA                       */}
       {/* ---------------------------------------------- */}
-      <aside className={styles.directionsCTAWrapper}>
-        {/* TODO: Add CTA links*/}
+      <aside>
+        <ShareTank />
       </aside>
-
       {/* ---------------------------------------------- */}
       {/*                     FOOTER                     */}
       {/* ---------------------------------------------- */}
       <footer className={styles.directionsFooter}>
-        {/* TODO: Add footer links */}
+        <Footer />
       </footer>
     </div>
   );
