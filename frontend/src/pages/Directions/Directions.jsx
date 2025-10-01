@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Directions.module.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 // import icons
 import backIconButton from "/assets/icons/misc/BackDefault.png";
@@ -21,9 +20,11 @@ import OperatingHours from "../../shared/stationCard/stationDetails/OperatingHou
 import Services from "../../shared/stationCard/stationDetails/Services";
 import { useStationResults } from "../../hooks/UseStationResults";
 
-export default function Directions({ userLocation, selectedStation }) {
+// web routing from find-station page
+import { useLocation } from "react-router-dom";
+
+export default function Directions({ userLocation }) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [stationAddress, setStationAddress] = useState("");
   const [localUserLocation, setLocalUserLocation] = useState(null); // initialy map component owns userLocation and pass in a prop but have refactored it and Direction component is the parent
   const { station } = useStationResults();
   const [directions, setDirections] = useState(null); // show route on map
@@ -91,6 +92,11 @@ export default function Directions({ userLocation, selectedStation }) {
       }
     }
   };
+
+  // dynamically display station name
+  const location = useLocation();
+  const selectedStation = location.state?.station;
+  console.log("⛽️ The selected station:", selectedStation);
 
   // Trigger draw route on map when both points are ready
   useEffect(() => {
