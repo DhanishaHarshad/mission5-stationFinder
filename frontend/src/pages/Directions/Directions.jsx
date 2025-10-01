@@ -7,10 +7,14 @@ import myLocationIcon from "/assets/icons/map/MyLocationDefault.png";
 import searchLocationIcon from "/assets/icons/map/SearchLocationDefault.png";
 import axios from "axios";
 
+import Fuels from "../../shared/stationCard/stationDetails/Fuels";
+import { useStationResults } from "../../hooks/UseStationResults";
+
 export default function Directions({ selectedStation }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [stationAddress, setStationAddress] = useState("");
   const [userLocation, setUserLocation] = useState(null); // initialy map component owns userLocation and pass in a prop but have refactored it and Direction component is the parent
+  const { station, isLoading, error } = useStationResults();
 
   // Get user location via browser
   const handleLocationClick = () => {
@@ -157,14 +161,31 @@ export default function Directions({ selectedStation }) {
                 </button>
               </div>
             </div>
-            {/* TODO: import station cards here */}
-            {/* station card */}
-            <div className={styles.directionsStationCard}>
-              {" "}
-              <h3 className={styles.directionsStationCardHeaders}>Fuel</h3>
-              <h3 className={styles.directionsStationCardHeaders}>Hours</h3>
-              <h3 className={styles.directionsStationCardHeaders}>Services</h3>
-            </div>
+
+            {/* ---------------------------------------------- */}
+            {/*                 STATION CARD                   */}
+            {/* ---------------------------------------------- */}
+            {/* conditional render station info */}
+            {station ? (
+              <div className={styles.directionsStationCardWrapper}>
+                <div className={styles.directionsSationCardInfo}>
+                  <h3 className={styles.directionsStationCardHeaders}>Fuel</h3>
+                  <Fuels fuelPrices={station.fuelPrices} />
+                </div>
+                <div className={styles.directionsSationCardInfo}>
+                  <h3 className={styles.directionsStationCardHeaders}>Hours</h3>
+                  <OperatingHours hours={station.operatingHours} />
+                </div>
+                <div className={styles.directionsSationCardInfo}>
+                  <h3 className={styles.directionsStationCardHeaders}>
+                    Services
+                  </h3>
+                  <Services services={station.services} />
+                </div>
+              </div>
+            ) : (
+              <p>no station selected</p>
+            )}
           </section>
           {/* ---------------------------------------------- */}
           {/*                RIGHT SECTION                   */}
