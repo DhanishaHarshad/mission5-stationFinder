@@ -47,14 +47,19 @@ export default function Map({ userLocation, stationLocation }) {
 
   //user location marker
   useEffect(() => {
-    if (!isMapReady || !isValidCoords(userLocation)) {
-      console.warn("❌ Invalid user location or map not ready:", userLocation);
+    if (!isMapReady) return;
+
+    if (!isValidCoords(userLocation)) {
+      if (userLocation !== null) {
+        console.log("❌ Invalid user location:", userLocation);
+      }
       return;
     }
 
     const { lat, lng } = userLocation;
     mapRef.current.panTo({ lat, lng });
     dropMarker({ lat, lng });
+    // console.log({ lat, lng }); comment out for privacy reason
   }, [userLocation, isMapReady]);
 
   // Drop station marker
