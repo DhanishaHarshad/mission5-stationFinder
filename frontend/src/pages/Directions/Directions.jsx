@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Directions.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // import icons
 import backIconButton from "/assets/icons/misc/BackDefault.png";
@@ -20,19 +21,19 @@ import OperatingHours from "../../shared/stationCard/stationDetails/OperatingHou
 import Services from "../../shared/stationCard/stationDetails/Services";
 import { useStationResults } from "../../hooks/UseStationResults";
 
-export default function Directions({ selectedStation }) {
+export default function Directions({ userLocation, selectedStation }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [stationAddress, setStationAddress] = useState("");
-  const [userLocation, setUserLocation] = useState(null); // initialy map component owns userLocation and pass in a prop but have refactored it and Direction component is the parent
+  const [localUserLocation, setLocalUserLocation] = useState(null); // initialy map component owns userLocation and pass in a prop but have refactored it and Direction component is the parent
   const { station } = useStationResults();
-  console.log("🧪 station:", station);
+  const [directions, setDirections] = useState(null); // show route on map
 
   // Get user location via browser
   const handleLocationClick = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
-          setUserLocation({ lat: coords.latitude, lng: coords.longitude });
+          setLocalUserLocation({ lat: coords.latitude, lng: coords.longitude });
         },
         (error) => console.error("Geolocation error:", error.message)
       );
@@ -51,11 +52,11 @@ export default function Directions({ selectedStation }) {
 
     try {
       const { data } = await axios.get(url);
-      console.log("📦 Raw geocode response:", data);
+      console.log("📍show me your location:", data);
       return data;
     } catch (err) {
       console.error(
-        "Geocoding error:",
+        "🥲 Unable to locate you. Geocoding error:",
         err.response?.data?.error || err.message
       );
       return null;
@@ -69,10 +70,10 @@ export default function Directions({ selectedStation }) {
       if (!query) return;
 
       try {
-        const raw = await geocodeAddress(query);
-        console.log("📦 Raw geocode response:", raw); // ✅ Debug log
+        const userEnteredLocation = await geocodeAddress(query);
+        console.log("📍is this where you located:", userEnteredLocation);
 
-        const coords = raw?.location;
+        const coords = userEnteredLocation?.location;
 
         if (
           coords &&
@@ -81,7 +82,7 @@ export default function Directions({ selectedStation }) {
           isFinite(coords.lat) &&
           isFinite(coords.lng)
         ) {
-          setUserLocation(coords);
+          setLocalUserLocation(coords);
         } else {
           console.warn("🤔 Invalid geocode result:", coords);
         }
@@ -91,12 +92,36 @@ export default function Directions({ selectedStation }) {
     }
   };
 
-  // Trigger directions when both points are ready
+  // Trigger draw route on map when both points are ready
   useEffect(() => {
-    if (userLocation && selectedStation?.location) {
-      // TODO: call Google Maps Directions API
-    }
-  }, [userLocation, selectedStation]);
+    const isValidCoords = (location) =>
+      location &&
+      typeof location.lat === "number" &&
+      typeof location.lng === "number";
+
+    if (
+      !isValidCoords(localUserLocation) ||
+      !isValidCoords(selectedStation?.location)
+    )
+      return;
+
+    const directionsService = new window.google.maps.DirectionsService();
+
+    directionsService.route(
+      {
+        origin: localUserLocation,
+        destination: selectedStation.location,
+        travelMode: window.google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status === window.google.maps.DirectionsStatus.OK) {
+          setDirections(result);
+        } else {
+          console.error("❌ Directions request failed:", result);
+        }
+      }
+    );
+  }, [localUserLocation, selectedStation]);
 
   return (
     <div className={styles.directionsWrapper}>
@@ -205,8 +230,9 @@ export default function Directions({ selectedStation }) {
           {/* ---------------------------------------------- */}
           <section className={styles.directionsRightSection}>
             <Map
-              userLocation={userLocation}
+              userLocation={localUserLocation}
               stationLocation={selectedStation?.location}
+              directions={directions}
             />
           </section>
         </div>
