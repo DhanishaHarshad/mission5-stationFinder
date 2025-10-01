@@ -1,6 +1,6 @@
 .operatingHoursContainer {
   padding: 1rem;
-  width: 40vw;
+  width: 20vw;
 }
 
 .operatingHoursContainer h4 {
@@ -39,5 +39,7 @@
 .hoursItem {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  padding: 0.1rem 0;
+  width: 100%;
+  
 }

@@ -4,6 +4,7 @@
     font-size: 36px; 
     margin-left: .5rem;
     width: 100%;
+    font-weight: var(--font-weight-extrabold);
 }
 
 .stationTitle p {

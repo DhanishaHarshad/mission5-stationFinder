@@ -6,8 +6,12 @@ import morgan from "morgan";
 
 import ZEnergyStation from "./src/models/ZEnergySchema.js";
 import { connectDB } from "./src/config/connectDb.js";
-import { getStationById, getStations } from "./src/controllers/getStationController.js";
+import {
+  getStationById,
+  getStations,
+} from "./src/controllers/getStationController.js";
 
+import geocodeRoute from "./src/routes/geocode.js";
 
 dotenv.config();
 
@@ -76,10 +80,11 @@ app.get("/stations", async (req, res) => {
   }
 });
 
-app.use("/api", getStations)
-app.use("/api", getStationById)
+// route for geocoding requests
+app.use("/geocode", geocodeRoute);
 
-
+app.use("/api", getStations);
+app.use("/api", getStationById);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
