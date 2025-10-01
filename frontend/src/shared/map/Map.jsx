@@ -23,71 +23,46 @@ export default function Map({ userLocation, stationLocation }) {
     setIsMapReady(true); // drop marker
   }, []);
 
-  // Trigger pan and marker drop when userLocation updates
-  useEffect(() => {
-    const dropMarker = async () => {
-      // validate user location and contain numeric coords
-      if (
-        !userLocation ||
-        typeof userLocation.lat !== "number" ||
-        typeof userLocation.lng !== "number" ||
-        !mapRef.current
-      ) {
-        console.log(
-          "❌ hey! Invalid user's location OR map is not ready:",
-          userLocation
-        );
-        return;
-      }
+  // Utility to validate coordinates
+  const isValidCoords = (location) =>
+    location &&
+    typeof location.lat === "number" &&
+    typeof location.lng === "number";
 
-      const { lat, lng } = userLocation;
-
-      // pan the map to user's location
-      mapRef.current.panTo({ lat, lng });
-      // import advanced marker (formally marker) from google map library
-      const { AdvancedMarkerElement } = await google.maps.importLibrary(
-        "marker"
-      );
-
-      new AdvancedMarkerElement({
-        map: mapRef.current,
-        position: { lat, lng },
-        // title: "You are here",
-      });
-    };
-    // drop marker when both user location and map is ready
-    if (isMapReady && userLocation) {
-      dropMarker();
+  // Drop a marker at a given location with optional title
+  const dropMarker = async ({ lat, lng }, title = "") => {
+    if (!mapRef.current) {
+      console.warn("❌ Map is not ready.");
+      return;
     }
+
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+    new AdvancedMarkerElement({
+      map: mapRef.current,
+      position: { lat, lng },
+      title,
+    });
+  };
+
+  //user location marker
+  useEffect(() => {
+    if (!isMapReady || !isValidCoords(userLocation)) {
+      console.warn("❌ Invalid user location or map not ready:", userLocation);
+      return;
+    }
+
+    const { lat, lng } = userLocation;
+    mapRef.current.panTo({ lat, lng });
+    dropMarker({ lat, lng });
   }, [userLocation, isMapReady]);
 
-  // TODO: refactor this userEffect as it similar to drop marker
+  // Drop station marker
   useEffect(() => {
-    const dropStationMarker = async () => {
-      if (
-        !stationLocation ||
-        typeof stationLocation.lat !== "number" ||
-        typeof stationLocation.lng !== "number" ||
-        !mapRef.current
-      )
-        return;
+    if (!isMapReady || !isValidCoords(stationLocation)) return;
 
-      const { lat, lng } = stationLocation;
-
-      const { AdvancedMarkerElement } = await google.maps.importLibrary(
-        "marker"
-      );
-
-      new AdvancedMarkerElement({
-        map: mapRef.current,
-        position: { lat, lng },
-        title: "Station",
-      });
-    };
-
-    if (isMapReady && stationLocation) {
-      dropStationMarker();
-    }
+    const { lat, lng } = stationLocation;
+    dropMarker({ lat, lng }, "Station");
   }, [stationLocation, isMapReady]);
 
   return (
