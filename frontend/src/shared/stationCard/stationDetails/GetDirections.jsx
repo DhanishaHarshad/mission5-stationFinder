@@ -1,9 +1,19 @@
-import styles from "./styles/GetDirections.module.css"
+import styles from "./styles/GetDirections.module.css";
+import { useNavigate } from "react-router-dom";
 
-export default function GetDirections() {
+export default function GetDirections({ station }) {
+  const navigate = useNavigate();
+
+  const handleClick = (event) => {
+    event.stopPropagation();
+    navigate("/directions", { state: { station } });
+  };
   return (
     <main className={styles.getDirections}>
-      <button><h5>Get Directions</h5></button>
+      <button onClick={handleClick}>
+        <h5>Get Directions</h5>
+        <img src="/assets/icons/misc/NextButton.png" alt="" />
+      </button>
     </main>
-  )
+  );
 }

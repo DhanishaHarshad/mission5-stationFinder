@@ -15,6 +15,37 @@
   font-display: swap; /* shows fall back font immediately, then swap to custom font when ready */
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter/Inter_18pt-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap; 
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter/Inter_18pt-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap; 
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter/Inter_18pt-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap; 
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter/Inter_18pt-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap; 
+}
+
+
+
 /* Base Typography & Colour */
 :root {
   /* Primary Font */
@@ -27,8 +58,11 @@
 
   /* Font Weight */
   --font-weight-regular: 400;
+  --font-weight-medium:500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+ 
 
   /* Headings */
   --heading-size-h1: 4.5rem;

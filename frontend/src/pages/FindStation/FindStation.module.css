@@ -1,23 +1,23 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .findStationPage {
-    height: 100vh;
-    width: 100vw;
+  height: 100vh;
+  width: 100vw;
 }
 
 .header {
-padding: 5px;
+  padding: 5px;
   height: 12vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: white; /* optional for contrast */
+  background-color: white;
 }
 
 .header img {
@@ -26,93 +26,89 @@ padding: 5px;
   max-width: 50%;
 }
 
-
 .findStationPage .pageName {
-    height: 10vh;
-    width: 100vw;
-    background: linear-gradient(90deg, #F26522 0%, #FFCB08 100%);
-    display: flex;
-    align-items: center;
+  height: 10vh;
+  width: 100vw;
+  background: linear-gradient(90deg, #f26522 0%, #ffcb08 100%);
+  display: flex;
+  align-items: center;
+  font-weight: var(--font-weight-extrabold);
 }
 
 .findStationPage h3 {
-    font-size: var(--heading-size-h3);
-    color: var(--Neutral-White);
-    font-weight: bolder;
-    margin-left: 10vw;
+  font-size: var(--heading-size-h3);
+  color: var(--Neutral-White);
+  font-weight: bolder;
+  margin-left: 5rem;
 }
 
 .findStationPage > .content {
-    display: flex;
-    height: 78vh;
-    width: 100vw;
+  display: flex;
+  height: 78vh;
+  width: 100vw;
 }
 
 .stationContainer {
-    flex: 1;
-    padding: 10px 60px;
-    background-color: var(--Neutral-Mist);
-    width: 50vw;
-
+  flex: 1;
+  padding: 10px 60px;
+  background-color: var(--Neutral-Mist);
+  width: 50vw;
 }
 
 .stationCount {
-    text-align: center;
+  text-align: center;
 }
 .content {
-    background-color: pink;
-    width: 100%;
+  background-color: pink;
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .mapContainer {
-    flex: 1;
-    background: skyblue;
-    justify-content: center;
-    justify-items: center;
-   
+  flex: 1;
+  background: skyblue;
+  justify-content: center;
+  justify-items: center;
 }
 
-
 .content .searchBar {
-    height: 8vh;
+  height: 8vh;
 }
 
 .stationCards {
-    height: 68vh;
-    width: 50vw;
-    display: flex;
-    gap: 5rem;
-    flex-direction: column;
-    align-items: flex-start;
-    overflow-y: scroll;
-    padding: 1rem;
-    border: 2px solid var(---Gray);
-    overflow-y: scroll;
+  height: 68vh;
+  width: 50vw;
+  display: flex;
+  gap: 5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: scroll;
+  padding: 1rem;
+  border: 2px solid var(---Gray);
+  overflow-y: scroll;
 }
 
 .searchBar {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .searchBar input {
-    height: 3rem;
-    width: 25rem;
-    border-radius: 12px;
-    margin-left: 5rem;   
-    border-color: var(--Primary-Orange);
-    padding: 1rem;
-    font-size: large;
+  height: 3rem;
+  width: 25rem;
+  border-radius: 12px;
+  margin-left: 5rem;
+  border-color: var(--Primary-Orange);
+  padding: 1rem;
+  font-size: large;
 }
 
 .searchBar img {
-    height: 3rem;
-    width: 5rem;
+  height: 3rem;
+  width: 5rem;
 }
-
