@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Directions.module.css";
-import Map from "../../shared/map/Map";
+import axios from "axios";
+
+// import icons
 import backIconButton from "/assets/icons/misc/BackDefault.png";
 import plusIconButton from "/assets/icons/misc/AddDefault.png";
 import myLocationIcon from "/assets/icons/map/MyLocationDefault.png";
 import searchLocationIcon from "/assets/icons/map/SearchLocationDefault.png";
-import axios from "axios";
+
+// imports for shared components
+import Header from "../../shared/header/Header";
+import ShareTank from "../../shared/shareTank/shareTank";
+import Footer from "../../shared/footer/Footer";
+
+//imports for station card and map
+import Map from "../../shared/map/Map";
+import Fuels from "../../shared/stationCard/stationDetails/Fuels";
+import OperatingHours from "../../shared/stationCard/stationDetails/OperatingHours";
+import Services from "../../shared/stationCard/stationDetails/Services";
+import { useStationResults } from "../../hooks/UseStationResults";
 
 export default function Directions({ selectedStation }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [stationAddress, setStationAddress] = useState("");
   const [userLocation, setUserLocation] = useState(null); // initialy map component owns userLocation and pass in a prop but have refactored it and Direction component is the parent
+  const { station } = useStationResults();
+  console.log("🧪 station:", station);
 
   // Get user location via browser
   const handleLocationClick = () => {
@@ -30,7 +45,7 @@ export default function Directions({ selectedStation }) {
   // sends geocode to the backend
   const geocodeAddress = async (address) => {
     const normalized = normalizeInput(address);
-    const url = `http://localhost:3000/geocode?address=${encodeURIComponent(
+    const url = `http://localhost:4000/geocode?address=${encodeURIComponent(
       normalized
     )}`;
 
@@ -88,7 +103,7 @@ export default function Directions({ selectedStation }) {
       {/* ---------------------------------------------- */}
       {/*                    NAV BAR                     */}
       {/* ---------------------------------------------- */}
-      <nav> {/* TODO: add navbar link here*/} </nav>
+      <Header />
 
       {/* ---------------------------------------------- */}
       {/*                      BODY                      */}
@@ -157,14 +172,33 @@ export default function Directions({ selectedStation }) {
                 </button>
               </div>
             </div>
-            {/* TODO: import station cards here */}
-            {/* station card */}
-            <div className={styles.directionsStationCard}>
-              {" "}
-              <h3 className={styles.directionsStationCardHeaders}>Fuel</h3>
-              <h3 className={styles.directionsStationCardHeaders}>Hours</h3>
-              <h3 className={styles.directionsStationCardHeaders}>Services</h3>
-            </div>
+
+            {/* ---------------------------------------------- */}
+            {/*                 STATION CARD                   */}
+            {/* ---------------------------------------------- */}
+            {/* conditional render station info */}
+            {station ? (
+              <div className={styles.directionsStationCardWrapper}>
+                <div className={styles.directionsSationCardInfo}>
+                  <h3 className={styles.directionsStationCardHeaders}>Fuel</h3>
+                  <Fuels fuelPrices={station.fuelPrices} />
+                </div>
+                <div className={styles.directionsSationCardInfo}>
+                  <h3 className={styles.directionsStationCardHeaders}>Hours</h3>
+                  <OperatingHours hours={station.operatingHours} />
+                </div>
+                <div className={styles.directionsSationCardInfo}>
+                  <h3 className={styles.directionsStationCardHeaders}>
+                    Services
+                  </h3>
+                  <Services services={station.services} />
+                </div>
+              </div>
+            ) : (
+              <div>
+                <p>no station selected</p>
+              </div>
+            )}
           </section>
           {/* ---------------------------------------------- */}
           {/*                RIGHT SECTION                   */}
@@ -181,15 +215,14 @@ export default function Directions({ selectedStation }) {
       {/* ---------------------------------------------- */}
       {/*                      CTA                       */}
       {/* ---------------------------------------------- */}
-      <aside className={styles.directionsCTAWrapper}>
-        {/* TODO: Add CTA links*/}
+      <aside>
+        <ShareTank />
       </aside>
-
       {/* ---------------------------------------------- */}
       {/*                     FOOTER                     */}
       {/* ---------------------------------------------- */}
       <footer className={styles.directionsFooter}>
-        {/* TODO: Add footer links */}
+        <Footer />
       </footer>
     </div>
   );
