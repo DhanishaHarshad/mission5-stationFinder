@@ -64,7 +64,7 @@ function LocationHandler({ onLocationResolved }) {
           ref={inputRef}
           type="text"
           placeholder="Enter a New Zealand address"
-          style={{ width: "100%", padding: "8px" }}
+          className={styles.searchBar}
         />
       )}
     </div>

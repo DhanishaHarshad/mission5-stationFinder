@@ -23,7 +23,7 @@ const defaultCenter = {
 
 export default function Map({
   userLocation,
-  stationLocation,
+  // stationLocation,
   directions,
   stationMarkers = [],
 }) {
@@ -64,92 +64,92 @@ export default function Map({
   }, [userLocation, isMapReady]);
 
   // Utility to validate coordinates
-  const isValidCoords = (location) =>
+  const _isValidCoords = (location) =>
     location &&
     typeof location.lat === "number" &&
     typeof location.lng === "number";
 
   // Drop a marker at a given location with optional title
-  const dropMarker = async ({ lat, lng }, title = "") => {
-    if (!mapRef.current) {
-      console.log("❌ Map is not ready.");
-      return;
-    }
+  // const dropMarker = async ({ lat, lng }, title = "") => {
+  //   if (!mapRef.current) {
+  //     console.log("❌ Map is not ready.");
+  //     return;
+  //   }
 
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  //   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-    new AdvancedMarkerElement({
-      map: mapRef.current,
-      position: { lat, lng },
-      title,
-    });
-  };
+  //   new AdvancedMarkerElement({
+  //     map: mapRef.current,
+  //     position: { lat, lng },
+  //     title,
+  //   });
+  // };
 
-  //user location marker
-  useEffect(() => {
-    if (!isMapReady) return;
+  // //user location marker
+  // useEffect(() => {
+  //   if (!isMapReady) return;
 
-    if (!isValidCoords(userLocation)) {
-      console.log("user location received:", userLocation);
+  //   if (!isValidCoords(userLocation)) {
+  //     console.log("user location received:", userLocation);
 
-      if (userLocation !== null) {
-        console.log("❌ Invalid user location:", userLocation);
-      }
-      return;
-    }
+  //     if (userLocation !== null) {
+  //       console.log("❌ Invalid user location:", userLocation);
+  //     }
+  //     return;
+  //   }
 
-    const { lat, lng } = userLocation;
-    mapRef.current.panTo({ lat, lng });
-    dropMarker({ lat, lng });
-    // console.log({ lat, lng }); comment out for privacy reason
-  }, [userLocation, isMapReady]);
+  //   const { lat, lng } = userLocation;
+  //   mapRef.current.panTo({ lat, lng });
+  //   dropMarker({ lat, lng });
+  //   // console.log({ lat, lng }); comment out for privacy reason
+  // }, [userLocation, isMapReady]);
 
-  // Drop station marker
-  useEffect(() => {
-    if (!isMapReady || !isValidCoords(stationLocation)) return;
+  // // Drop station marker
+  // useEffect(() => {
+  //   if (!isMapReady || !isValidCoords(stationLocation)) return;
 
-    const { lat, lng } = stationLocation;
-    console.log(
-      "📍is the stationLocation in the room with us?:",
-      stationLocation
-    );
+  //   const { lat, lng } = stationLocation;
+  //   console.log(
+  //     "📍is the stationLocation in the room with us?:",
+  //     stationLocation
+  //   );
 
-    dropMarker({ lat, lng }, "Station");
-  }, [stationLocation, isMapReady]);
+  //   dropMarker({ lat, lng }, "Station");
+  // }, [stationLocation, isMapReady]);
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-        <GoogleMap
-          center={defaultCenter}
-          //_____ MAP ZOOM  ___________________________________
-          //--- Update the zoom level based on the route ---
-          zoom={currentPath === "/find-station" ? 5.2 : 12}
-          //___________________________________________________
+      {/* <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}> */}
+      <GoogleMap
+        center={defaultCenter}
+        //_____ MAP ZOOM  ___________________________________
+        //--- Update the zoom level based on the route ---
+        zoom={currentPath === "/find-station" ? 5.2 : 12}
+        //___________________________________________________
 
-          mapContainerStyle={containerStyle}
-          options={mapDisplayOptions}
-          onLoad={(map) => {
-            mapRef.current = map;
-            setIsMapReady(true);
-          }}
-        >
-          {directions && (
-            <DirectionsRenderer
-              directions={directions}
-              options={{ suppressMarkers: true }}
-            />
-          )}
-          {/*_______________ FIND STATION MAP MARKERS ________________________
+        mapContainerStyle={containerStyle}
+        options={mapDisplayOptions}
+        onLoad={(map) => {
+          mapRef.current = map;
+          setIsMapReady(true);
+        }}
+      >
+        {directions && (
+          <DirectionsRenderer
+            directions={directions}
+            options={{ suppressMarkers: true }}
+          />
+        )}
+        {/*_______________ FIND STATION MAP MARKERS ________________________
     
           --- Render station marker only inside the /find-station map instance ---
     */}
-          {isMapReady && currentPath === "/find-station" && (
-            <Markers map={mapRef.current} stations={stationMarkers} />
-          )}
-          {/* ________________________________________________________________ */}
-        </GoogleMap>
-      </LoadScript>
+        {isMapReady && currentPath === "/find-station" && (
+          <Markers map={mapRef.current} stations={stationMarkers} />
+        )}
+        {/* ________________________________________________________________ */}
+      </GoogleMap>
+      {/* </LoadScript> */}
     </div>
   );
 }

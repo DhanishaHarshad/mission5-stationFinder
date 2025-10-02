@@ -48,39 +48,15 @@ export default function FindStation() {
         >
           <section className={styles.stationContainer}>
             <form className={styles.searchBar}>
-              {/* <img
-                src="/assets/icons/misc/SearchDefault.png"
-                alt=""
-                className={styles.searchIcon}
-              /> */}
-              <LocationHandler
-                onLocationResolved={setUserLocation}
-                // className={styles.searchBar}
-              />
+              <LocationHandler onLocationResolved={setUserLocation} />
             </form>
-
-            {/* <form className={styles.searchBar}> */}
-            {/* <LocationHandler onLocationResolved={setUserLocation} /> */}
-            {/* <div style={{ width: "100%", height: "100vh" }}> */}
-
-            {/* <Map userLocation={userLocation} stationMarkers={[]} /> */}
-            {/* </div> */}
-
-            {/* <input type="text" placeholder="Search location" />
-            <img
-              src="/assets/filters/D-FilterDefault.png"
-              alt="filter button"
-              onClick={() => setShowDropdown((prev) => !prev)}
-              className={styles.filterBtn}
-            /> */}
-            {/* </form> */}
             {showDropdown && (
               <div className={styles.dropdownContainer} ref={dropdownRef}>
                 <FilterDropdown />
               </div>
             )}
+            {/* <FilterDropdown /> */}
             <p className={styles.stationCount}>
-              {" "}
               {stations.length} Stations Found
             </p>
             <section className={styles.stationCards}>
