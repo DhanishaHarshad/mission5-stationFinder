@@ -6,6 +6,7 @@ export default function GetDirections({ station }) {
 
   const handleClick = (event) => {
     event.stopPropagation();
+    console.log("🤔 Is the station being passed??:", station);
     navigate("/directions", { state: { station } });
   };
   return (
