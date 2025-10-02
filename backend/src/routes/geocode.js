@@ -1,7 +1,11 @@
 import express from "express";
 import axios from "axios";
 
+import { geocodeAddress } from "../controllers/geoCodeController";
+
 const router = express.Router();
+
+router.post("/", geocodeAddress);
 
 // converts an address into latitude & longitude
 router.get("/", async (req, res) => {
