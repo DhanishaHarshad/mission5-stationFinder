@@ -25,21 +25,20 @@ import { useLocation } from "react-router-dom";
 
 export default function Directions({ userLocation }) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [localUserLocation, setLocalUserLocation] = useState(null); // initialy map component owns userLocation and pass in a prop but have refactored it and Direction component is the parent
-  const { station } = useStationResults();
+  const [localUserLocation, setLocalUserLocation] = useState(null);
+  const { station } = useStationResults(); // check if this is needed
   const [directions, setDirections] = useState(null); // show route on map
 
-  // Get user location via browser
-  const handleLocationClick = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        ({ coords }) => {
-          setLocalUserLocation({ lat: coords.latitude, lng: coords.longitude });
-        },
-        (error) => console.error("Geolocation error:", error.message)
-      );
-    }
-  };
+  // useEffect(() => {
+  //   if (!localUserLocation && navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       ({ coords }) => {
+  //         setLocalUserLocation({ lat: coords.latitude, lng: coords.longitude });
+  //       },
+  //       (error) => console.error("Geolocation error:", error.message)
+  //     );
+  //   }
+  // }, []);
 
   // normalize input
   const normalizeInput = (input) => input.trim().toLowerCase();
@@ -64,6 +63,20 @@ export default function Directions({ userLocation }) {
     }
   };
 
+  // Get user location via browser
+  const handleLocationClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+          console.log({ lat: coords.latitude, lng: coords.longitude });
+
+          setLocalUserLocation({ lat: coords.latitude, lng: coords.longitude });
+        },
+        (error) => console.error("Geolocation error:", error.message)
+      );
+    }
+  };
+
   // Trigger search on "enter"
   const handleSearchKeyDown = async (e) => {
     if (e.key === "Enter") {
@@ -85,7 +98,7 @@ export default function Directions({ userLocation }) {
         ) {
           setLocalUserLocation(coords);
         } else {
-          console.warn("🤔 Invalid geocode result:", coords);
+          console.log("🤔 Invalid geocode result:", coords);
         }
       } catch (err) {
         console.error("❌ Geocode lookup failed:", err.message);
@@ -96,7 +109,27 @@ export default function Directions({ userLocation }) {
   // dynamically display station name
   const location = useLocation();
   const selectedStation = location.state?.station;
-  console.log("⛽️ The selected station:", selectedStation);
+  const stationLocation = selectedStation?.coordinates
+    ? {
+        lat: selectedStation.coordinates.latitude,
+        lng: selectedStation.coordinates.longitude,
+      }
+    : null;
+
+  // debugging tools
+  useEffect(() => {
+    if (selectedStation) {
+      console.log("🏬 Pitstop for a cheeky pie & V:", selectedStation);
+      console.log("💸 Money making window:", selectedStation.openingHours);
+      console.log(
+        "🛍️ Check if I can buy a pie here:",
+        selectedStation.services
+      );
+      console.log("⛽️ How much is the fuel?", selectedStation.fuelPrices);
+      console.log("📍 selectedStation location:", selectedStation?.coordinates);
+      console.log("📦 Full location.state:", location.state);
+    }
+  }, [selectedStation]);
 
   // Trigger draw route on map when both points are ready
   useEffect(() => {
@@ -105,10 +138,7 @@ export default function Directions({ userLocation }) {
       typeof location.lat === "number" &&
       typeof location.lng === "number";
 
-    if (
-      !isValidCoords(localUserLocation) ||
-      !isValidCoords(selectedStation?.location)
-    )
+    if (!isValidCoords(localUserLocation) || !isValidCoords(stationLocation))
       return;
 
     const directionsService = new window.google.maps.DirectionsService();
@@ -116,18 +146,25 @@ export default function Directions({ userLocation }) {
     directionsService.route(
       {
         origin: localUserLocation,
-        destination: selectedStation.location,
+        destination: stationLocation,
         travelMode: window.google.maps.TravelMode.DRIVING,
       },
       (result, status) => {
         if (status === window.google.maps.DirectionsStatus.OK) {
+          console.log(
+            "🛣️ Drawing route from",
+            localUserLocation,
+            "to",
+            stationLocation
+          );
+
           setDirections(result);
         } else {
           console.error("❌ Directions request failed:", result);
         }
       }
     );
-  }, [localUserLocation, selectedStation]);
+  }, [localUserLocation, stationLocation]);
 
   return (
     <div className={styles.directionsWrapper}>
@@ -182,7 +219,7 @@ export default function Directions({ userLocation }) {
                 </button>
               </div>
 
-              {/* "plus" icon + station address */}
+              {/* station address */}
               <div className={styles.directionsInputRow}>
                 <input
                   type="text"
@@ -208,21 +245,23 @@ export default function Directions({ userLocation }) {
             {/*                 STATION CARD                   */}
             {/* ---------------------------------------------- */}
             {/* conditional render station info */}
-            {station ? (
+            {selectedStation ? (
               <div className={styles.directionsStationCardWrapper}>
                 <div className={styles.directionsSationCardInfo}>
                   <h3 className={styles.directionsStationCardHeaders}>Fuel</h3>
-                  <Fuels fuelPrices={station.fuelPrices} />
+                  <Fuels fuelPrices={selectedStation.fuelPrices} />
                 </div>
                 <div className={styles.directionsSationCardInfo}>
                   <h3 className={styles.directionsStationCardHeaders}>Hours</h3>
-                  <OperatingHours hours={station.operatingHours} />
+                  <OperatingHours
+                    operatingHours={selectedStation.openingHours}
+                  />
                 </div>
                 <div className={styles.directionsSationCardInfo}>
                   <h3 className={styles.directionsStationCardHeaders}>
                     Services
                   </h3>
-                  <Services services={station.services} />
+                  <Services services={selectedStation.services} />
                 </div>
               </div>
             ) : (
@@ -237,7 +276,7 @@ export default function Directions({ userLocation }) {
           <section className={styles.directionsRightSection}>
             <Map
               userLocation={localUserLocation}
-              stationLocation={selectedStation?.location}
+              stationLocation={stationLocation}
               directions={directions}
             />
           </section>
