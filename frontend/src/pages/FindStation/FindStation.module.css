@@ -5,7 +5,7 @@
 }
 
 .findStationPage {
-  height: 100vh;
+  height: auto;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -13,23 +13,16 @@
 
 .header {
   padding: 5px;
-  height: 12vh;
   width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
   background-color: white;
 }
 
 .header img {
   object-fit: cover;
-  max-height: 50%;
-  max-width: 50%;
 }
 
 .findStationPage .pageName {
-  height: 10vh;
+  height: 15vh;
   width: 100vw;
   background: linear-gradient(90deg, #f26522 0%, #ffcb08 100%);
   display: flex;
@@ -51,15 +44,15 @@
 }
 
 .stationContainer {
-  flex: 1;
-  padding: 10px 60px;
+  flex: 0.4;
+  padding: 1rem;
   background-color: var(--Neutral-Mist);
-  width: 50vw;
+  width: 100%;
 }
 .dropdownContainer {
-  position: fixed;
-  top: 7.4rem;
-  left: 47.5vw;
+  position: absolute;
+  top: 15rem;
+  left: 45vw;
   z-index: 999;
   display: flex;
   justify-content: center;
@@ -67,13 +60,14 @@
   padding-top: 5rem;
 }
 
-
 .stationCount {
   text-align: center;
+  padding: 1rem;
 }
 .content {
   background-color: pink;
   width: 100%;
+  height: 100vh;
 }
 
 ::-webkit-scrollbar {
@@ -81,20 +75,15 @@
 }
 
 .mapContainer {
-  flex: 1;
+  flex: 1.6;
   display: flex;
-  background: skyblue;
   justify-content: center;
   align-items: center;
 }
 
-.content .searchBar {
-  height: 8vh;
-}
-
 .stationCards {
   height: 68vh;
-  width: 50vw;
+  width: 45vw;
   display: flex;
   gap: 5rem;
   flex-direction: column;
@@ -110,16 +99,18 @@
   margin-bottom: 1rem;
   display: flex;
   gap: 1rem;
+  position: relative;
+  height: 6vh;
 }
 
 .searchBar input {
-  height: 3rem;
+  height: 0.5rem;
   width: 35vw;
   border-radius: 12px;
   margin-left: 1rem;
   border: none;
   box-shadow: 0 4px 12px 0 var(--Neutral-Gray);
-  padding: 2rem 5rem;
+  padding: 1.5rem 4rem;
   font-size: var(--font-size-lg);
 }
 .searchBar input:focus {
@@ -128,16 +119,42 @@
 }
 
 .searchIcon {
-  height: 2rem;
-  width: 2rem;
-  position: fixed;
-  top: 26.3vh;
-  left: 6vw;
+  height: 1.5rem;
+  width: 1.5rem;
+  position: absolute;
+  left: 3rem;
+  top: 1.5rem;
 }
 
 .filterBtn {
-  height: 4rem;
+  height: 3.5rem;
   width: 6rem;
-  position: relative;
-  left: 2rem;
+  margin-left: auto;
+}
+
+
+@media (max-width: 768px) {
+  .dropdownContainer {
+    position: absolute;
+    top: 8rem;
+    right: 0;
+    width: 90vw;
+    z-index: 999;
+    padding-top: 2rem;
+  }
+  .searchIcon {
+    position: absolute;
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dropdownContainer {
+    position: absolute;
+    top: 14rem;
+    left: 1rem;
+    width: 90vw;
+    padding-top: 2rem;
+    background-color: var(--Neutral-Mist);
+  }
 }
