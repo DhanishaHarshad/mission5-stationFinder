@@ -1,7 +1,9 @@
+/* global google */
+
 import express from "express";
 import axios from "axios";
 
-import { geocodeAddress } from "../controllers/geoCodeController";
+import { geocodeAddress } from "../controllers/geocodeController.js";
 
 const router = express.Router();
 

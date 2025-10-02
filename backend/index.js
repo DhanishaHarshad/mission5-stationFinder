@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import morgan from "morgan";
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
 // LOCAL IMPORTS
 import ZEnergyStation from "./src/models/ZEnergySchema.js";
@@ -15,6 +15,8 @@ import {
 } from "./src/controllers/getStationController.js";
 
 import geocodeRoute from "./src/routes/geocode.js";
+
+import zstationRoutes from "./src/routes/zstations.js";
 
 // CONFIG
 dotenv.config();
@@ -71,6 +73,8 @@ app.get("/api/zstations", async (req, res) => {
       limit,
     });
 
+    app.use("/api/zstations", zstationRoutes);
+
     // build match object dynamically
     const match = {};
 
@@ -89,9 +93,9 @@ app.get("/api/zstations", async (req, res) => {
       },
     ];
 
-    if (sort_by) {
-      pipeline.push({ $sort: { [sort_by]: order === "desc" ? -1 : 1 } });
-    }
+    // if (sort_by) {
+    //   pipeline.push({ $sort: { [sort_by]: order === "desc" ? -1 : 1 } });
+    // }
 
     const parsedLimit = Number(limit);
     pipeline.push({ $limit: isNaN(parsedLimit) ? 10 : parsedLimit });

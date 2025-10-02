@@ -1,9 +1,5 @@
-import styles from "./Search.module.css"
+// import styles from "./Search.module.css"
 
 export default function Search() {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <div></div>;
 }

@@ -4,7 +4,6 @@ import { useRef, useCallback, useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import Markers from "./Markers";
 
-
 const mapDisplayOptions = {
   disableDefaultUI: true, // disables= all UI controls
   clickableIcons: false, // disable POI
@@ -32,13 +31,13 @@ export default function Map({
   const currentPath = location.pathname;
   //______________________________________________________________
 
-//_______________ MAP CONTAINER STYLE __________________________
-//  --- Set container style for /find-station and /directions ---
-const containerStyle =
-  currentPath === "/find-station"
-    ? { width: "100%", height: "100%" } 
-    : { width: "44rem", height: "53.5rem" }; 
- //______________________________________________________________
+  //_______________ MAP CONTAINER STYLE __________________________
+  //  --- Set container style for /find-station and /directions ---
+  const containerStyle =
+    currentPath === "/find-station"
+      ? { width: "100%", height: "100%" }
+      : { width: "44rem", height: "53.5rem" };
+  //______________________________________________________________
 
   const onLoad = useCallback((map) => {
     mapRef.current = map;
@@ -113,16 +112,19 @@ const containerStyle =
   }, [stationLocation, isMapReady]);
 
   return (
-    <div style={{ width: "100%", height: "100%"}}>
+    <div style={{ width: "100%", height: "100%" }}>
       <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
         {/* Google Map Box */}
         <GoogleMap
+          onTilesLoaded={(map) => {
+            mapRef.current = map;
+            setIsMapReady(true);
+          }}
           center={defaultCenter}
-
-        //_____ MAP ZOOM  ___________________________________
-        //--- Update the zoom level based on the route ---
+          //_____ MAP ZOOM  ___________________________________
+          //--- Update the zoom level based on the route ---
           zoom={currentPath === "/find-station" ? 5.2 : 12}
-        //___________________________________________________
+          //___________________________________________________
 
           mapContainerStyle={containerStyle}
           options={mapDisplayOptions}

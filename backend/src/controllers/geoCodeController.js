@@ -1,4 +1,5 @@
 // Dummy geocode controller — replace with real geocoding service later
+
 export const geocodeAddress = async (req, res) => {
   try {
     const { address } = req.body;

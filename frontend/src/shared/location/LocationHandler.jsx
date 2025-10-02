@@ -2,58 +2,58 @@ import React, { useState, useEffect } from "react";
 import AddressSearch from "./AddressSearch";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:4000";
+const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 function LocationHandler({ onLocationResolved }) {
   const [useManualAddress, setUseManualAddress] = useState(false);
   const [coords, setCoords] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  // Try browser geolocation on mount
   useEffect(() => {
-    if (!useManualAddress) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          const { latitude, longitude } = pos.coords;
-          setCoords({ latitude, longitude });
-          //send to backend
-          fetch(`{API_BASE}/api/location`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ latitude, longitude }),
-          });
-          if (onLocationResolved) {
-            onLocationResolved({ latitude, longitude });
-          }
-        },
-        (err) => {
-          console.error("Geolocation error:", err);
-          setUseManualAddress(true);
-        }
-      );
-    }
-  }, [useManualAddress, onLocationResolved]);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        onLocationResolved({ lat: latitude, lng: longitude });
+        setLoading(false);
+      },
+      (err) => {
+        console.warn("Geolocation error:", err);
+        setUseManualAddress(true);
+        setLoading(false);
+      }
+    );
+  }, [onLocationResolved]);
 
+  // Geocode address using Google Maps API
   const handleAddressSubmit = async (address) => {
-    const res = await fetch(`${API_BASE}/geocode`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ address }),
-    });
-    const data = await res.json();
-    console.log("Geocoded coords:", data);
-    setCoords(data);
-    onLocationResolved(data);
+    try {
+      setLoading(true);
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+        address
+      )}&key=${API_KEY}`;
+
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (data.status === "OK") {
+        const { lat, lng } = data.results[0].geometry.location;
+        onLocationResolved({ lat, lng });
+      } else {
+        alert("Could not find that address. Try again.");
+      }
+    } catch (err) {
+      console.error("Geocoding failed:", err);
+      alert("Error looking up that address.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div>
-      {coords ? (
-        <p>
-          Using location: {coords.latitude}, {coords.longitude}
-        </p>
-      ) : useManualAddress ? (
-        <AddressSearch onSubmit={handleAddressSubmit} />
-      ) : (
-        <p> Requesting you location...</p>
-      )}
+      {loading && !useManualAddress && <p>Requesting your location…</p>}
+      {useManualAddress && <AddressSearch onSubmit={handleAddressSubmit} />}
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default function FindStation() {
   const dropdownRef = useRef(null);
   const { stations } = useStationResults();
   const formattedStations = stations.map(formatStation);
-  const [setUserLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState(null);
 
   useEffect(() => {
     const handleCloseDropdown = (e) => {
@@ -40,22 +40,26 @@ export default function FindStation() {
       </div>
       <section className={styles.content}>
         <section className={styles.stationContainer}>
-          <form className={styles.searchBar}>
-            <img
+          {/* <form className={styles.searchBar}> */}
+          {/* <img
               src="/assets/icons/misc/SearchDefault.png"
               alt=""
               className={styles.searchIcon}
-            />
-            <LocationHandler onLocationResolved={setUserLocation} />
+            /> */}
+          {/* <LocationHandler onLocationResolved={setUserLocation} /> */}
+          {/* <div style={{ width: "100%", height: "100vh" }}> */}
+          <LocationHandler onLocationResolved={setUserLocation} />
+          {/* <Map userLocation={userLocation} stationMarkers={[]} /> */}
+          {/* </div> */}
 
-            <input type="text" placeholder="Search location" />
+          {/* <input type="text" placeholder="Search location" />
             <img
               src="/assets/filters/D-FilterDefault.png"
               alt="filter button"
               onClick={() => setShowDropdown((prev) => !prev)}
               className={styles.filterBtn}
-            />
-          </form>
+            /> */}
+          {/* </form> */}
           {showDropdown && (
             <div className={styles.dropdownContainer} ref={dropdownRef}>
               <FilterDropdown />
