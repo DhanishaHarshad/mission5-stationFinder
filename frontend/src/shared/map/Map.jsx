@@ -5,8 +5,9 @@ import {
   DirectionsRenderer,
 } from "@react-google-maps/api";
 import { useRef, useCallback, useState, useEffect } from "react";
+import { useLocation } from "react-router";
+import Markers from "./Markers";
 
-const containerStyle = { width: "44rem", height: "53.5rem" };
 const mapDisplayOptions = {
   disableDefaultUI: true, // disables= all UI controls
   clickableIcons: false, // disable POI
@@ -20,9 +21,30 @@ const defaultCenter = {
   lng: 174.77781, // AKL coords
 };
 
-export default function Map({ userLocation, stationLocation, directions }) {
+export default function Map({
+  userLocation,
+  stationLocation,
+  directions,
+  stationMarkers = [],
+}) {
   const mapRef = useRef(null);
   const [isMapReady, setIsMapReady] = useState(false);
+
+  /*_____ ADDED USE LOCATION  ___________
+  --- This is used to detect the current route to conditionally render 
+  map markers, update the zoom level, change container size in /find-station  ---
+*/
+  const location = useLocation();
+  const currentPath = location.pathname;
+  //______________________________________________________________
+
+  //_______________ MAP CONTAINER STYLE __________________________
+  //  --- Set container style for /find-station and /directions ---
+  const containerStyle =
+    currentPath === "/find-station"
+      ? { width: "100%", height: "100%" }
+      : { width: "44rem", height: "53.5rem" };
+  //______________________________________________________________
 
   const onLoad = useCallback((map) => {
     mapRef.current = map;
@@ -84,11 +106,15 @@ export default function Map({ userLocation, stationLocation, directions }) {
   }, [stationLocation, isMapReady]);
 
   return (
-    <div>
+    <div style={{ width: "100%", height: "100%" }}>
       <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
         <GoogleMap
           center={defaultCenter}
-          zoom={10}
+          //_____ MAP ZOOM  ___________________________________
+          //--- Update the zoom level based on the route ---
+          zoom={currentPath === "/find-station" ? 5.2 : 12}
+          //___________________________________________________
+
           mapContainerStyle={containerStyle}
           options={mapDisplayOptions}
           onLoad={(map) => {
@@ -102,6 +128,14 @@ export default function Map({ userLocation, stationLocation, directions }) {
               options={{ suppressMarkers: true }}
             />
           )}
+          {/*_______________ FIND STATION MAP MARKERS ________________________
+    
+          --- Render station marker only inside the /find-station map instance ---
+    */}
+          {isMapReady && currentPath === "/find-station" && (
+            <Markers map={mapRef.current} stations={stationMarkers} />
+          )}
+          {/* ________________________________________________________________ */}
         </GoogleMap>
       </LoadScript>
     </div>
