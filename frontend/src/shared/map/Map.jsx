@@ -1,11 +1,17 @@
 import React from "react";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  LoadScript,
+  DirectionsRenderer,
+} from "@react-google-maps/api";
 import { useRef, useCallback, useState, useEffect } from "react";
 
 const containerStyle = { width: "44rem", height: "53.5rem" };
 const mapDisplayOptions = {
   disableDefaultUI: true, // disables= all UI controls
   clickableIcons: false, // disable POI
+  scrollwheel: true, // mouse wheel zoom
+  gestureHandling: "auto", // pinch/drag/scroll
   mapId: import.meta.env.VITE_GOOGLE_MAP_ID_KEY, // custom map styling
 };
 
@@ -14,7 +20,7 @@ const defaultCenter = {
   lng: 174.77781, // AKL coords
 };
 
-export default function Map({ userLocation, stationLocation }) {
+export default function Map({ userLocation, stationLocation, directions }) {
   const mapRef = useRef(null);
   const [isMapReady, setIsMapReady] = useState(false);
 
@@ -32,7 +38,7 @@ export default function Map({ userLocation, stationLocation }) {
   // Drop a marker at a given location with optional title
   const dropMarker = async ({ lat, lng }, title = "") => {
     if (!mapRef.current) {
-      console.warn("❌ Map is not ready.");
+      console.log("❌ Map is not ready.");
       return;
     }
 
@@ -50,6 +56,8 @@ export default function Map({ userLocation, stationLocation }) {
     if (!isMapReady) return;
 
     if (!isValidCoords(userLocation)) {
+      console.log("user location received:", userLocation);
+
       if (userLocation !== null) {
         console.log("❌ Invalid user location:", userLocation);
       }
@@ -67,20 +75,34 @@ export default function Map({ userLocation, stationLocation }) {
     if (!isMapReady || !isValidCoords(stationLocation)) return;
 
     const { lat, lng } = stationLocation;
+    console.log(
+      "📍is the stationLocation in the room with us?:",
+      stationLocation
+    );
+
     dropMarker({ lat, lng }, "Station");
   }, [stationLocation, isMapReady]);
 
   return (
     <div>
       <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-        {/* Google Map Box */}
         <GoogleMap
           center={defaultCenter}
-          zoom={12}
+          zoom={10}
           mapContainerStyle={containerStyle}
           options={mapDisplayOptions}
-          onLoad={onLoad}
-        ></GoogleMap>
+          onLoad={(map) => {
+            mapRef.current = map;
+            setIsMapReady(true);
+          }}
+        >
+          {directions && (
+            <DirectionsRenderer
+              directions={directions}
+              options={{ suppressMarkers: true }}
+            />
+          )}
+        </GoogleMap>
       </LoadScript>
     </div>
   );
