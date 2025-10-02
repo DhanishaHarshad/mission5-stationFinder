@@ -1,0 +1,86 @@
+.filterContainer {
+  max-height: 33vh;
+  width: 17vw;
+  transition: max-height 0.3s ease;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px 0 var(--Neutral-Gray);
+  border-radius: 8px;
+  margin: 1rem;
+  font-weight: 600;
+  background: var(--Neutral-White);
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.expanded {
+  max-height: 82vh;
+}
+
+.card {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 1.5rem;
+    
+}
+.categoryTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.serviceLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 16px;
+  padding-bottom: 0.2rem;
+  font-weight: 100;
+  color: var(--Neutral-Dark-Gray);
+}
+
+.fuelName, 
+.chargingName,
+.foodName, 
+.vehicleServicesName{
+border-bottom: 1px solid var(--Neutral-Light-Gray);
+}
+
+.checkBoxContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filterButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.clearBtn,
+.applyBtn {
+    height: 2rem;
+    width: 8rem;
+    border-radius: 16px;
+    border: none;
+    font-weight: var(--font-weight-bold);
+    padding: 0.2rem;
+}
+
+.clearBtn {
+    background: var(--Neutral-White);
+
+}
+
+.applyBtn {
+    background: var(--Primary-Orange);
+    color: var(--Neutral-White);   
+}
