@@ -44,6 +44,18 @@ export default function Map({
     setIsMapReady(true); // drop marker
   }, []);
 
+  // Pan to user location when it changes
+  useEffect(() => {
+    if (isMapReady && userLocation && mapRef.current) {
+      mapRef.current.panTo(userLocation);
+      new window.google.maps.Marker({
+        map: mapRef.current,
+        position: userLocation,
+        title: "You are here",
+      });
+    }
+  }, [userLocation, isMapReady]);
+
   // Trigger pan and marker drop when userLocation updates
   useEffect(() => {
     const dropMarker = async () => {
@@ -113,33 +125,31 @@ export default function Map({
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-        {/* Google Map Box */}
-        <GoogleMap
-          onTilesLoaded={(map) => {
-            mapRef.current = map;
-            setIsMapReady(true);
-          }}
-          center={defaultCenter}
-          //_____ MAP ZOOM  ___________________________________
-          //--- Update the zoom level based on the route ---
-          zoom={currentPath === "/find-station" ? 5.2 : 12}
-          //___________________________________________________
+      {/* Google Map Box */}
+      <GoogleMap
+        onTilesLoaded={(map) => {
+          mapRef.current = map;
+          setIsMapReady(true);
+        }}
+        center={defaultCenter}
+        //_____ MAP ZOOM  ___________________________________
+        //--- Update the zoom level based on the route ---
+        zoom={currentPath === "/find-station" ? 5.2 : 12}
+        //___________________________________________________
 
-          mapContainerStyle={containerStyle}
-          options={mapDisplayOptions}
-          onLoad={onLoad}
-        >
-          {/*_______________ FIND STATION MAP MARKERS ________________________
+        mapContainerStyle={containerStyle}
+        options={mapDisplayOptions}
+        onLoad={onLoad}
+      >
+        {/*_______________ FIND STATION MAP MARKERS ________________________
     
           --- Render station marker only inside the /find-station map instance ---
     */}
-          {isMapReady && currentPath === "/find-station" && (
-            <Markers map={mapRef.current} stations={stationMarkers} />
-          )}
-          {/* ________________________________________________________________ */}
-        </GoogleMap>
-      </LoadScript>
+        {isMapReady && currentPath === "/find-station" && (
+          <Markers map={mapRef.current} stations={stationMarkers} />
+        )}
+        {/* ________________________________________________________________ */}
+      </GoogleMap>
     </div>
   );
 }

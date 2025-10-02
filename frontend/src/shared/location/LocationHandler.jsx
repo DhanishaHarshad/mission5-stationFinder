@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AddressSearch from "./AddressSearch";
+import styles from "../../pages/FindStation/FindStation.module.css";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:4000";
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 function LocationHandler({ onLocationResolved }) {
   const [useManualAddress, setUseManualAddress] = useState(false);
-  const [coords, setCoords] = useState(null);
-  const [loading, setLoading] = useState(true);
+  //   const [coords, setCoords] = useState(null);
+  const [_loading, setLoading] = useState(true);
+  const inputRef = useRef(null);
 
   // Try browser geolocation on mount
   useEffect(() => {
@@ -25,35 +27,46 @@ function LocationHandler({ onLocationResolved }) {
     );
   }, [onLocationResolved]);
 
-  // Geocode address using Google Maps API
-  const handleAddressSubmit = async (address) => {
-    try {
-      setLoading(true);
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-        address
-      )}&key=${API_KEY}`;
+  // Hook up Google Places Autocomplete when manual entry is needed
+  useEffect(() => {
+    if (!useManualAddress || !window.google || !inputRef.current) return;
 
-      const res = await fetch(url);
-      const data = await res.json();
-
-      if (data.status === "OK") {
-        const { lat, lng } = data.results[0].geometry.location;
-        onLocationResolved({ lat, lng });
-      } else {
-        alert("Could not find that address. Try again.");
+    const autocomplete = new window.google.maps.places.Autocomplete(
+      inputRef.current,
+      {
+        componentRestrictions: { country: "nz" },
+        fields: ["formatted_address", "geometry"],
       }
-    } catch (err) {
-      console.error("Geocoding failed:", err);
-      alert("Error looking up that address.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    );
+
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      if (place.geometry) {
+        onLocationResolved({
+          address: place.formatted_address,
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+        });
+      }
+    });
+  }, [useManualAddress, onLocationResolved]);
 
   return (
     <div>
-      {loading && !useManualAddress && <p>Requesting your location…</p>}
-      {useManualAddress && <AddressSearch onSubmit={handleAddressSubmit} />}
+      <img
+        src="/assets/icons/misc/SearchDefault.png"
+        alt=""
+        className={styles.searchIcon}
+      />
+
+      {useManualAddress && (
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Enter a New Zealand address"
+          style={{ width: "100%", padding: "8px" }}
+        />
+      )}
     </div>
   );
 }

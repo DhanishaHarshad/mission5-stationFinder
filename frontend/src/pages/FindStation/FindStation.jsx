@@ -4,7 +4,10 @@ import StationCard from "../../shared/stationCard/StationCard";
 import Header from "../../shared/header/Header";
 import FilterDropdown from "../../shared/filter/FilterDropdown";
 import Map from "../../shared/map/Map";
+
 import { useState, useEffect, useRef } from "react";
+import { LoadScript } from "@react-google-maps/api";
+
 import { useStationResults } from "../../hooks/UseStationResults";
 import { formatStation } from "../../utils/formatStation";
 
@@ -39,45 +42,62 @@ export default function FindStation() {
         <h3>Find Station</h3>
       </div>
       <section className={styles.content}>
-        <section className={styles.stationContainer}>
-          {/* <form className={styles.searchBar}> */}
-          {/* <img
-              src="/assets/icons/misc/SearchDefault.png"
-              alt=""
-              className={styles.searchIcon}
-            /> */}
-          {/* <LocationHandler onLocationResolved={setUserLocation} /> */}
-          {/* <div style={{ width: "100%", height: "100vh" }}> */}
-          <LocationHandler onLocationResolved={setUserLocation} />
-          {/* <Map userLocation={userLocation} stationMarkers={[]} /> */}
-          {/* </div> */}
+        <LoadScript
+          googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+          libraries={["places"]} // 👈 this is where you add it
+        >
+          <section className={styles.stationContainer}>
+            <form className={styles.searchBar}>
+              {/* <img
+                src="/assets/icons/misc/SearchDefault.png"
+                alt=""
+                className={styles.searchIcon}
+              /> */}
+              <LocationHandler
+                onLocationResolved={setUserLocation}
+                // className={styles.searchBar}
+              />
+            </form>
 
-          {/* <input type="text" placeholder="Search location" />
+            {/* <form className={styles.searchBar}> */}
+            {/* <LocationHandler onLocationResolved={setUserLocation} /> */}
+            {/* <div style={{ width: "100%", height: "100vh" }}> */}
+
+            {/* <Map userLocation={userLocation} stationMarkers={[]} /> */}
+            {/* </div> */}
+
+            {/* <input type="text" placeholder="Search location" />
             <img
               src="/assets/filters/D-FilterDefault.png"
               alt="filter button"
               onClick={() => setShowDropdown((prev) => !prev)}
               className={styles.filterBtn}
             /> */}
-          {/* </form> */}
-          {showDropdown && (
-            <div className={styles.dropdownContainer} ref={dropdownRef}>
-              <FilterDropdown />
-            </div>
-          )}
-          <p className={styles.stationCount}>
-            {" "}
-            {stations.length} Stations Found
-          </p>
-          <section className={styles.stationCards}>
-            {formattedStations.map((station) => (
-              <StationCard key={station.id} station={station} />
-            ))}
+            {/* </form> */}
+            {showDropdown && (
+              <div className={styles.dropdownContainer} ref={dropdownRef}>
+                <FilterDropdown />
+              </div>
+            )}
+            <p className={styles.stationCount}>
+              {" "}
+              {stations.length} Stations Found
+            </p>
+            <section className={styles.stationCards}>
+              {formattedStations.map((station) => (
+                <StationCard key={station.id} station={station} />
+              ))}
+            </section>
           </section>
-        </section>
-        <section className={styles.mapContainer}>
-          <Map stationLocation={null} stationMarkers={formattedStations} />
-        </section>
+
+          <section className={styles.mapContainer}>
+            <Map
+              userLocation={userLocation}
+              stationLocation={null}
+              stationMarkers={formattedStations}
+            />
+          </section>
+        </LoadScript>
       </section>
     </main>
   );
