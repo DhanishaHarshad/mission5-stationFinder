@@ -2,17 +2,29 @@ import styles from "./FindStation.module.css";
 import StationCard from "../../shared/stationCard/StationCard";
 
 import Header from "../../shared/header/Header";
+import FilterDropdown from "../../shared/filter/FilterDropdown";
+import Map from "../../shared/map/Map";
+import { useState, useEffect, useRef } from "react";
 import { useStationResults } from "../../hooks/UseStationResults";
 import { formatStation } from "../../utils/formatStation";
-import Map from "../../shared/map/Map"
-
-import Filter from "../../shared/filter/Filter";
-
 
 export default function FindStation() {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
   const { stations } = useStationResults();
-  const formattedStations = stations.map(formatStation)
-  
+  const formattedStations = stations.map(formatStation);
+
+  useEffect(() => {
+    const handleCloseDropdown = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleCloseDropdown);
+    return () => {
+      document.removeEventListener("mousedown", handleCloseDropdown);
+    };
+  }, []);
   return (
     <main className={styles.findStationPage}>
       <header className={styles.header}>
@@ -24,24 +36,39 @@ export default function FindStation() {
       <section className={styles.content}>
         <section className={styles.stationContainer}>
           <form className={styles.searchBar}>
-            <label>Search Placeholder</label>
-            <input type="text" placeholder="search location" />
-
+            <img
+              src="/assets/icons/misc/SearchDefault.png"
+              alt=""
+              className={styles.searchIcon}
+            />
+            <input type="text" placeholder="Search location" />
             <img
               src="/assets/filters/D-FilterDefault.png"
               alt="filter button"
+              onClick={() => setShowDropdown((prev) => !prev)}
+              className={styles.filterBtn}
             />
-            <Filter />
           </form>
-          <p className={styles.stationCount}> {stations.length} Stations Found</p>
+          {showDropdown && (
+            <div className={styles.dropdownContainer} ref={dropdownRef}>
+              <FilterDropdown />
+            </div>
+          )}
+          <p className={styles.stationCount}>
+            {" "}
+            {stations.length} Stations Found
+          </p>
           <section className={styles.stationCards}>
-            {formattedStations.map(station => (
-              <StationCard key={station.id} station={station}/>
+            {formattedStations.map((station) => (
+              <StationCard key={station.id} station={station} />
             ))}
           </section>
         </section>
         <section className={styles.mapContainer}>
-          <Map/>
+          <Map
+            stationLocation={null} 
+            stationMarkers={formattedStations}
+          />
         </section>
       </section>
     </main>
