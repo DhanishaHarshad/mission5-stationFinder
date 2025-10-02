@@ -8,15 +8,17 @@
 .servicesContainer h4 {
     position: sticky;
     top: 0;
-    font-size: 18px;
+    font-size: var(--font-size-md);
     background-color: var(--Neutral-Mist);
 }
 
 .servicesAvailable {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 2fr);
+    justify-items: center;
     padding: 1rem;
     gap: 0.5rem;
+    background-color: var(--White);
 }
 
 .servicesAvailable img {
@@ -28,7 +30,7 @@
     padding: 5px;
     background-color: var(--Neutral-Light-Gray);
     height: 2rem;
-    width: 16rem;
+    width: 14rem;
     border-radius: 10px;
     display: flex;
     align-items: center;
