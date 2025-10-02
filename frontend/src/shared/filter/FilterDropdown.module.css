@@ -1,5 +1,5 @@
 .filterContainer {
-  max-height: 33vh;
+  max-height: 36vh;
   width: 17vw;
   transition: max-height 0.3s ease;
   overflow-y: auto;
@@ -46,18 +46,26 @@
   font-weight: 100;
   color: var(--Neutral-Dark-Gray);
 }
+.serviceLabel:hover {
+  background-color: var(--Primary-Orange);
+  color: var(--Neutral-White);
+  width: 100%;
+}
 
 .fuelName, 
 .chargingName,
 .foodName, 
 .vehicleServicesName{
-border-bottom: 1px solid var(--Neutral-Light-Gray);
+  border-bottom: 1px solid var(--Neutral-Light-Gray);
+  cursor: pointer;
 }
+
 
 .checkBoxContainer {
   display: flex;
   gap: 0.5rem;
 }
+
 
 .filterButtons {
     display: flex;
