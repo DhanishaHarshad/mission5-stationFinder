@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import styles from "./FindStation.module.css";
 import StationCard from "../../shared/stationCard/StationCard";
 
@@ -9,7 +7,6 @@ import Map from "../../shared/map/Map";
 import { useState, useEffect, useRef } from "react";
 import { useStationResults } from "../../hooks/UseStationResults";
 import { formatStation } from "../../utils/formatStation";
-import Map from "../../shared/map/Map";
 
 import Filter from "../../shared/filter/Filter";
 import LocationFinder from "../../shared/location/LocationFinder";
@@ -20,6 +17,7 @@ export default function FindStation() {
   const dropdownRef = useRef(null);
   const { stations } = useStationResults();
   const formattedStations = stations.map(formatStation);
+  const [setUserLocation] = useState(null);
 
   useEffect(() => {
     const handleCloseDropdown = (e) => {
@@ -48,6 +46,8 @@ export default function FindStation() {
               alt=""
               className={styles.searchIcon}
             />
+            <LocationHandler onLocationResolved={setUserLocation} />
+
             <input type="text" placeholder="Search location" />
             <img
               src="/assets/filters/D-FilterDefault.png"
