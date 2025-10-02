@@ -1,7 +1,7 @@
 import styles from "./FindStation.module.css";
 import StationCard from "../../shared/stationCard/StationCard";
-
 import Header from "../../shared/header/Header";
+import Footer from "../../shared/footer/Footer"
 import FilterDropdown from "../../shared/filter/FilterDropdown";
 import Map from "../../shared/map/Map";
 import { useState, useEffect, useRef } from "react";
@@ -27,14 +27,21 @@ export default function FindStation() {
   }, []);
   return (
     <main className={styles.findStationPage}>
+      {/* ___________ HEADER _______________ */}
       <header className={styles.header}>
         <Header />
       </header>
+          {/* ___________ PAGE TITLE _______________ */}
+      
       <div className={styles.pageName}>
         <h3>Find Station</h3>
       </div>
+          {/* ___________ BODY _______________ */}
+      
       <section className={styles.content}>
         <section className={styles.stationContainer}>
+
+          {/* ___________ SEACRCH BAR _______________ */}
           <form className={styles.searchBar}>
             <img
               src="/assets/icons/misc/SearchDefault.png"
@@ -49,28 +56,36 @@ export default function FindStation() {
               className={styles.filterBtn}
             />
           </form>
+
+          {/* _________ FILTER DROPDOWN LIST _____________________ */}
           {showDropdown && (
             <div className={styles.dropdownContainer} ref={dropdownRef}>
               <FilterDropdown />
             </div>
           )}
+
+          {/* ___________ STATION RESULT COUNTER _______________ */}          
           <p className={styles.stationCount}>
             {" "}
             {stations.length} Stations Found
           </p>
+
+          {/* ___________ STATION CARDS _______________ */}
           <section className={styles.stationCards}>
             {formattedStations.map((station) => (
               <StationCard key={station.id} station={station} />
             ))}
           </section>
         </section>
+          {/* ___________ MAP _______________ */}
         <section className={styles.mapContainer}>
           <Map
             stationLocation={null} 
             stationMarkers={formattedStations}
           />
-        </section>
+        </section>       
       </section>
+      <Footer/>
     </main>
   );
 }
