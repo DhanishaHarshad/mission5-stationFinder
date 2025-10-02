@@ -47,7 +47,6 @@ export default function FilterDropdown() {
                 <li
                   key={index}
                   className={styles[`${style}Name`]}
-                  
                 >
                   <div className={styles.checkBoxContainer}>
                     <img
@@ -60,7 +59,6 @@ export default function FilterDropdown() {
                       alt=""
                       className={styles.checkboxIcon}
                     />
-
                     <p className={styles.serviceLabel}>{item}</p>
                   </div>
                 </li>
