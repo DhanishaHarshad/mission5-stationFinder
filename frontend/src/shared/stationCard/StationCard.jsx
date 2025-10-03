@@ -13,7 +13,6 @@ export default function StationCard({ station }) {
         name={station.name}
         address={station.address}
       />
-      {/* ___ CONDITIONALLY render open 24 hours || open now */}
       <OperatingHours
         operatingHours={station.openingHours}
       />
