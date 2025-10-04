@@ -109,12 +109,17 @@ export default function Directions({ userLocation }) {
   // dynamically display station name
   const location = useLocation();
   const selectedStation = location.state?.station;
-  const stationLocation = selectedStation?.coordinates
-    ? {
-        lat: selectedStation.coordinates.latitude,
-        lng: selectedStation.coordinates.longitude,
-      }
-    : null;
+
+  // console.log("selectedStation:", selectedStation);
+  // console.log("selectedStation.coordinates:", selectedStation?.coordinates);
+
+  const stationLocation =
+    selectedStation?.latitude != null && selectedStation?.longitude != null
+      ? {
+          lat: selectedStation.latitude,
+          lng: selectedStation.longitude,
+        }
+      : null;
 
   // debugging tools
   useEffect(() => {
@@ -158,7 +163,9 @@ export default function Directions({ userLocation }) {
             stationLocation
           );
 
-          setDirections(result);
+          setDirections((prev) => {
+            return prev === result ? prev : result;
+          });
         } else {
           console.error("❌ Directions request failed:", result);
         }
