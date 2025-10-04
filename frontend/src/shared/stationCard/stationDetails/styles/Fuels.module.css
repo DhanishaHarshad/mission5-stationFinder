@@ -1,7 +1,8 @@
 .fuelsContainer {
   padding: 1rem;
-  width: 45vw;
+  width: 38vw;
   border-bottom: 0.5px solid var(--Neutral-Gray);
+  
 }
 
 .fuelGroup {
@@ -12,8 +13,8 @@
 }
 
 .fuelsContainer img {
-  height: 20px;
-  width: 20px;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 .fuelSection {
@@ -29,14 +30,14 @@
 }
 
 .fuelsContainer p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--Neutral-Black);
   text-align: center;
   padding: 0.5rem;
 }
 
 .fuelsContainer h6 {
-  font-size: 16px;
+  font-size: 17px;
   text-align: center;
 }
 

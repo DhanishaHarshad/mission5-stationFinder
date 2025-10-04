@@ -1,11 +1,10 @@
 .operatingHoursContainer {
-  padding: 1rem;
   width: 20vw;
 }
 
 .operatingHoursContainer h4 {
-    padding-bottom: 10px;
     color: var(--Green);
+    padding-left: 0.8rem;
 }
 
 .dropdownHeader {
@@ -25,7 +24,7 @@
 
 .hoursList {
   list-style: none;
-  padding: 0;
+  padding-left: 0.8rem;
   margin: 0;
   overflow: hidden;
   max-height: 0;
