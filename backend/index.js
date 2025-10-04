@@ -21,7 +21,7 @@ const app = express();
 connectDB();
 
 //middleware to parse JSON bodies
-app.use(cors({ origin: "http://localhost:5173" })); // allow the react dev server
+app.use(cors({ origin: "https://localhost:5173" })); // allow the react dev server
 app.use(express.json());
 
 app.use(morgan("dev")); // 'dev' is a common format for concise colored output

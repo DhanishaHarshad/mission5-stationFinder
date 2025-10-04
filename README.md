@@ -1,9 +1,11 @@
 # MISSION 5
 
 ### PROJECT OVERVIEW
+
 Mission 5 is a full-stack web application designed to help users locate Z Energy stations across New Zealand. It features a responsive, map-integrated frontend and a scalable backend API, delivering real-time station data, intuitive filtering, and clean UI interactions. The project emphasizes modular architecture, team collaboration, and production-grade design.
 
 ### Features
+
 - Station Search & Filter – Filter by fuel type, services, and location
 - Interactive Map – View station pins and clusters with zoom and click-to-navigate
 - Get Directions – Navigate to a dedicated directions page with station-specific data
@@ -11,8 +13,11 @@ Mission 5 is a full-stack web application designed to help users locate Z Energy
 - Fuel Prices & Services – Display last updated prices and available amenities
 - Reusable Hooks & Components – Modular React architecture for scalability
 - Backend API – RESTful endpoints with MongoDB integration and filtering logic
+
 # CONTRIBUTORS
+
 ### Christine Chen
+
 - Developed the Directions Page with dynamic routing and station-specific data
 - Designed and implemented the MongoDB Schema for Z Energy stations
 - Built the Map Component with interactive markers and clustering logic
@@ -20,6 +25,7 @@ Mission 5 is a full-stack web application designed to help users locate Z Energy
 ---
 
 ### Dhanisha Harshad
+
 - Architected the Frontend and Backend Folder Structure
 - Created the Home Page with hero section and navigation flow
 - Implemented Search and Filter Logic with dropdowns, checkboxes, and real-time results
@@ -27,16 +33,19 @@ Mission 5 is a full-stack web application designed to help users locate Z Energy
 ---
 
 ### Rachel Mareraki
+
 - Built the Find Station Page with dynamic station cards and filtering
 - Engineered the StationCard Component with modular subcomponents (e.g. GetDirections, OperatingHours)
 - Configured the Database Connection and validated API integration
 
 # TECH STACK
+
 - Frontend : React & Vite
 - Backend : Node.js & Express
 - Database : MongoDB & Mongoose
 
 ### Tools
+
 - GitHub : Version control and collaboration
 - Jira : Agile task tracking and sprint planning
 - Teams : Team communication
@@ -44,29 +53,48 @@ Mission 5 is a full-stack web application designed to help users locate Z Energy
 - Whiteboard : Planning and user flow mapping
 
 # INSTALLATION
-### 1. Clone the repo: 
+
+### 1. Clone the repo:
+
     `git clone https://github.com/DhanishaHarshad/mission5-stationFinder`
+
 ### 2. Open terminal and navigate into the client and server directories.
 
 Complete the following steps for both the server and client directories:
 
 ### 3. Run `npm install` to install dependencies
-### 4. Create `.env` in the root level 
+
+### 4. Create `.env` in the root level
+
 - Add to backend .env:
 
 `MONGO_URI=your_mongo_connection_string
 PORT=4000
 FRONT=http://localhost:5173
 `
-- Add to frontend .env: 
+
+- Add to frontend .env:
 
 `VITE_GOOGLE_MAPS_API_KEY=your_api_key
 VITE_STATION_API=http://localhost:4000/api/zstations`
 
 ### 5. Start the app
+
 - Start server: `npm start`
 - Start client: `npm run dev`
 
+## HTTPS Setup
+
+This project runs on HTTPS. To set up:
+
+1. Install mkcert: https://github.com/FiloSottile/mkcert
+2. Run `mkcert -install`
+3. Generate certificates:
+   ```bash
+   cd frontend/certs
+   mkcert -key-file localhost+2-key.pem -cert-file localhost+2.pem localhost 127.0.0.1 ::1
+   Run npm run dev
+   ```
 
 # FOLDER STRUCTURE
 
@@ -166,29 +194,29 @@ Mission5-stationFinder/
 │ ├── Main.jsx
 │ └── .env
 Backend/
-├── .env                     
-├── Index.js               
+├── .env
+├── Index.js
 └── src/
     ├── config/
-    │   └── connectDb.js     
+    │   └── connectDb.js
     │
     ├── controllers/
-    │   ├── getStationController.js  
-    │   └── stationController.js     
+    │   ├── getStationController.js
+    │   └── stationController.js
     │
     ├── models/
-    │   └── zEnergySchema.js         
+    │   └── zEnergySchema.js
     │
     ├── routes/
-    │   ├── getStations.js          
-    │   └── stationRoutes.js       
+    │   ├── getStations.js
+    │   └── stationRoutes.js
     │
     ├── scripts/
-    │   ├── Seed.js                 
-    │   └── stationData.js           
+    │   ├── Seed.js
+    │   └── stationData.js
     │
     └── services/
-        └── stationFilter.js        
+        └── stationFilter.js
 ├── Readme.md
 └── .gitignore
 ```
