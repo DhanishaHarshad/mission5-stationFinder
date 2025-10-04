@@ -94,6 +94,9 @@ export default function Map({
 
   // Drop station marker
   useEffect(() => {
+    console.log("Validating coords:", stationLocation);
+    console.log("Result:", isValidCoords(stationLocation));
+
     if (!isMapReady || !isValidCoords(stationLocation)) return;
 
     const { lat, lng } = stationLocation;
@@ -104,6 +107,15 @@ export default function Map({
 
     dropMarker({ lat, lng }, "Station");
   }, [stationLocation, isMapReady]);
+
+  // stop direction from going into rendering loop by storing in useRef
+  const directionsRef = useRef(null);
+
+  useEffect(() => {
+    if (directions && !directionsRef.current) {
+      directionsRef.current = directions;
+    }
+  }, [directions]);
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
@@ -122,12 +134,19 @@ export default function Map({
             setIsMapReady(true);
           }}
         >
-          {directions && (
+          {directionsRef.current && (
+            <DirectionsRenderer
+              directions={directionsRef.current}
+              options={{ suppressMarkers: true }}
+            />
+          )}
+
+          {/* {directions && (
             <DirectionsRenderer
               directions={directions}
               options={{ suppressMarkers: true }}
             />
-          )}
+          )} */}
           {/*_______________ FIND STATION MAP MARKERS ________________________
     
           --- Render station marker only inside the /find-station map instance ---
