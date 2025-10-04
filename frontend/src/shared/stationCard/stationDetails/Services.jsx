@@ -1,9 +1,7 @@
 import styles from "./styles/Services.module.css";
-
-import { formatServices } from "../../../utils/serviceIcons.js";
+import { serviceIcon } from "../../../utils/serviceIcons.js"; 
 
 export default function Services({ services }) {
-
   if (!services || services.length === 0) {
     return (
       <main className={styles.servicesContainer}>
@@ -18,29 +16,17 @@ export default function Services({ services }) {
       <h4>Services Available</h4>
       <section className={styles.servicesAvailable}>
         {services.map((service) => {
-          const match = formatServices.find(
-            (f) => f.service_type === service.type
-          );
-          
-          const serviceName = service.name; 
-          
+          const icon = serviceIcon[service.type];
           return (
-            <div key={service.id} className={styles.serviceItem}> 
-              {match ? (
-                <span className={styles.serviceName}>
-                  <img src={match.icon} alt={serviceName} />
-                  {serviceName}
-                </span>
-              ) : (
-                <span>{serviceName}</span>
-              )}
+            <div key={service.id} className={styles.serviceItem}>
+              <span className={styles.serviceName}>
+                {icon && <img src={icon} alt={service.name} />}
+                {service.name}
+              </span>
             </div>
           );
         })}
       </section>
-
-      <section className={styles.servicesAvailable}></section>
-
     </main>
   );
 }
