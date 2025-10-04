@@ -1,4 +1,13 @@
 import ZEnergyStation from "../models/ZEnergySchema.js";
+//____ IMPORT SEARCHQUERY _____
+
+//____ ACCEPT QUERY PARAMS FROM FRONTEND CONST {SEARCH="", FILTER=[]} = REQ.QUERY
+
+//_______ PASS THE QUERY THROUGH HERE ENSURING THE DEFAULT IS ZEnergyStation.find({}) ________
+
+//_____ DEFAULT IS FIND ALL STATIONS _____
+
+//____ QUERY THE DATABASE ______
 
 export const getStations = async (req, res) => {
     try {
