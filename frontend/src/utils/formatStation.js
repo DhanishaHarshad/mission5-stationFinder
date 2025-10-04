@@ -1,4 +1,5 @@
 import { formatOpeningHours } from "./formatOpeningHours";
+import { serviceLabel } from "./serviceLabels";
 
 export function formatStation(station) {
   return {
@@ -21,9 +22,7 @@ export function formatStation(station) {
           .map(service => ({
             id: service._id,
             type: service.type,
-            name: service.type
-              .replace(/_/g, " ")
-              .replace(/\b\w/g, c => c.toUpperCase())
+            name: serviceLabel[service.type] || service.type
           }))
       : []
   };

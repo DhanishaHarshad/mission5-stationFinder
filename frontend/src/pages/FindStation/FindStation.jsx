@@ -11,6 +11,8 @@ import { formatStation } from "../../utils/formatStation";
 export default function FindStation() {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
+
+  //_____  FOR SEARCH: ADD SEARCH QUERY AND SELECTED FILTERS AS PROPS INSIDE THE USESTATIONS HOOK ____
   const { stations } = useStationResults();
   const formattedStations = stations.map(formatStation);
 

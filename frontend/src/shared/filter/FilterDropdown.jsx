@@ -1,5 +1,5 @@
 import styles from "./FilterDropdown.module.css";
-import { filterData } from "../../utils/formatFilterCategories";
+import { filterData } from "../../utils/filterData";
 import { useState } from "react";
 
 export default function FilterDropdown() {
@@ -44,13 +44,10 @@ export default function FilterDropdown() {
             </li>
             {isOpen &&
               items.map((item, index) => (
-                <li
-                  key={index}
-                  className={styles[`${style}Name`]}
-                >
+                <li key={index} className={styles[`${style}Name`]}>
                   <div className={styles.checkBoxContainer}>
                     <img
-                    onClick={() => toggleCheckbox(item)}
+                      onClick={() => toggleCheckbox(item)}
                       src={
                         selectedCheckbox.includes(item)
                           ? "/assets/icons/misc/CheckboxActive.png"
@@ -59,7 +56,7 @@ export default function FilterDropdown() {
                       alt=""
                       className={styles.checkboxIcon}
                     />
-                    <p className={styles.serviceLabel}>{item}</p>
+                    <p className={styles.serviceLabel}>{item.label}</p>
                   </div>
                 </li>
               ))}
@@ -67,8 +64,12 @@ export default function FilterDropdown() {
         );
       })}
       <div className={styles.filterButtons}>
-        <button className={styles.clearBtn}>Clear Filter ( {selectedCheckbox.length} )</button>
-        <button className={styles.applyBtn}>Apply Filter ( {selectedCheckbox.length} )</button>
+        <button className={styles.clearBtn}>
+          Clear Filter ( {selectedCheckbox.length} )
+        </button>
+        <button className={styles.applyBtn}>
+          Apply Filter ( {selectedCheckbox.length} )
+        </button>
       </div>
     </div>
   );

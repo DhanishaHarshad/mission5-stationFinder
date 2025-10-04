@@ -1,0 +1,8 @@
+//___ BUILD A DYNAMIC QUERY HERE IN THE BACKEND TO FILTER AND SEARCH___
+
+//____ SERCH INPUT - SEARCH ADDRESS, OR STATION NAME ____
+
+//_____ FILTERS - FUELS & SERVICES _____
+
+//____ NOTE: THE FILTER DROPDOWN HAS BEEN BUILT WITH filterData.js, serviceIcons.js and serviceLabels.js _______
+
