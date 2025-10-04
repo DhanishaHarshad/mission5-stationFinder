@@ -139,4 +139,4 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # included so mkcert certificates aren't committed to the repository
-certs/
+/frontend/certs/
