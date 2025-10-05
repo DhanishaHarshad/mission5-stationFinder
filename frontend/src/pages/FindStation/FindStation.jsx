@@ -14,18 +14,18 @@ export default function FindStation() {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchInput, setSearchInput] = useState("");
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedFuelTypes, setSelectedFuelTypes] = useState([]);
-
   //_____  FOR SEARCH: ADD SEARCH QUERY AND SELECTED FILTERS AS PROPS INSIDE THE USESTATIONS HOOK ____
   const { stations } = useStationResults(
     searchQuery,
     selectedServices,
     selectedFuelTypes
   ); // default empty string to fetch all stations
+
   const formattedStations = stations.map(formatStation);
 
+  //___ FILTER DROPDOWN EVENT HANDLER _____
   useEffect(() => {
     const handleCloseDropdown = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -38,14 +38,19 @@ export default function FindStation() {
     };
   }, []);
 
+  //____ SEARCH INPUT ON ENTER HANDLER ____
   function handleFormSubmission(e) {
     e.preventDefault(); // prevent page refreshing when you hit enter
     // console.log(e);
     setSearchQuery(searchInput);
   }
+
+  //_____ SEARCH INPUT HANDLER ____
   function handleSearchQuery(e) {
-    setSearchInput(e.target.value);
+    setSearchQuery(e.target.value);
   }
+
+  //____ APPLY FILTER HANDLER _____
   function handleApplyFilter(selectedCheckbox) {
     // setSelectedFilters(selectedCheckbox);
     const { services, fuelTypes } = formatSelectedFilters(selectedCheckbox);
@@ -53,6 +58,7 @@ export default function FindStation() {
     setSelectedFuelTypes(fuelTypes);
     setShowDropdown(false); // close the dropdown after applying filters
   }
+
   return (
     <main className={styles.findStationPage}>
       {/* ___________ HEADER _______________ */}
@@ -82,7 +88,7 @@ export default function FindStation() {
               type="text"
               placeholder="Search location"
               name="search"
-              value={searchInput}
+              value={searchQuery}
               onChange={handleSearchQuery}
             />
             <img
