@@ -102,3 +102,27 @@
 body {
   font-family: var(--primary-font), sans-serif;
 }
+
+/* ___ CLUSTER MARKER STYLES TO RENDER COUNT _____ */
+.custom-cluster {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cluster-count {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 10;
+}
