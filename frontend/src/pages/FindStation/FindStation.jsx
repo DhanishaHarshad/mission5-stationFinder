@@ -9,6 +9,7 @@ import { useStationResults } from "../../hooks/UseStationResults";
 import { formatStation } from "../../utils/formatStation";
 
 export default function FindStation() {
+  const [mapCenter, setMapCenter] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -27,6 +28,7 @@ export default function FindStation() {
       document.removeEventListener("mousedown", handleCloseDropdown);
     };
   }, []);
+
   return (
     <main className={styles.findStationPage}>
       {/* ___________ HEADER _______________ */}
@@ -44,7 +46,7 @@ export default function FindStation() {
         <section className={styles.stationContainer}>
 
           {/* ___________ SEACRCH BAR _______________ */}
-          <form className={styles.searchBar}>
+          <form className={styles.searchBar} onSubmit={(e) => {e.preventDefault()}}>
             <img
               src="/assets/icons/misc/SearchDefault.png"
               alt=""
@@ -69,7 +71,7 @@ export default function FindStation() {
           {/* ___________ STATION RESULT COUNTER _______________ */}          
           <p className={styles.stationCount}>
             {" "}
-            {stations.length} Stations Found
+            {formattedStations.length} Stations Found
           </p>
 
           {/* ___________ STATION CARDS _______________ */}
@@ -82,7 +84,7 @@ export default function FindStation() {
           {/* ___________ MAP _______________ */}
         <section className={styles.mapContainer}>
           <Map
-            stationLocation={null} 
+            stationLocation={mapCenter} 
             stationMarkers={formattedStations}
           />
         </section>       
