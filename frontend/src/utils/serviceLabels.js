@@ -1,8 +1,8 @@
 import { filterData } from "./filterData.js";
 
-export const serviceIcon = filterData
+export const serviceLabel = filterData
   .flatMap((group) => group.items)
   .reduce((acc, item) => {
-    acc[item.value] = item.icon;
+    acc[item.value] = item.label;
     return acc;
   }, {});
