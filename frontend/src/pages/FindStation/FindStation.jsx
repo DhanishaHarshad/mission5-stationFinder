@@ -7,12 +7,15 @@ import Map from "../../shared/map/Map";
 import { useState, useEffect, useRef } from "react";
 import { useStationResults } from "../../hooks/UseStationResults";
 import { formatStation } from "../../utils/formatStation";
+import SearchBar from "./components/SearchBar";
 
 export default function FindStation() {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const { stations } = useStationResults();
-  const formattedStations = stations.map(formatStation);
+  const [formattedStations, setFormattedStations] = useState(
+    stations.map(formatStation)
+  );
 
   useEffect(() => {
     const handleCloseDropdown = (e) => {
@@ -35,13 +38,15 @@ export default function FindStation() {
       </div>
       <section className={styles.content}>
         <section className={styles.stationContainer}>
+          {/* <ShareUserLocation /> */}
+          <SearchBar setStations={setFormattedStations} />
           <form className={styles.searchBar}>
-            <img
+            {/* <img
               src="/assets/icons/misc/SearchDefault.png"
               alt=""
               className={styles.searchIcon}
             />
-            <input type="text" placeholder="Search location" />
+            <input type="text" placeholder="Search location" /> */}
             <img
               src="/assets/filters/D-FilterDefault.png"
               alt="filter button"
@@ -65,10 +70,7 @@ export default function FindStation() {
           </section>
         </section>
         <section className={styles.mapContainer}>
-          <Map
-            stationLocation={null} 
-            stationMarkers={formattedStations}
-          />
+          <Map stationLocation={null} stationMarkers={formattedStations} />
         </section>
       </section>
     </main>

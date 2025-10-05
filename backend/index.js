@@ -12,6 +12,7 @@ import {
 } from "./src/controllers/getStationController.js";
 
 import geocodeRoute from "./src/routes/geocode.js";
+import geodecodeRoute from "./src/routes/geodecode.js";
 
 dotenv.config();
 
@@ -21,7 +22,8 @@ const app = express();
 connectDB();
 
 //middleware to parse JSON bodies
-app.use(cors({ origin: "https://localhost:5173" })); // allow the react dev server
+// app.use(cors({ origin: "https://localhost:5713" })); // allow the react dev server
+app.use(cors());
 app.use(express.json());
 
 app.use(morgan("dev")); // 'dev' is a common format for concise colored output
@@ -82,6 +84,7 @@ app.get("/stations", async (req, res) => {
 
 // route for geocoding requests
 app.use("/geocode", geocodeRoute);
+app.use("/geodecode", geodecodeRoute);
 
 app.use("/api", getStations);
 app.use("/api", getStationById);
