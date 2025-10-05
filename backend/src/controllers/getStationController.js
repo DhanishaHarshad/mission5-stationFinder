@@ -2,31 +2,24 @@ import ZEnergyStation from "../models/ZEnergySchema.js";
 //____ IMPORT SEARCHQUERY _____
 import searchQuery from "../utils/searchQuery.js";
 
-//____ ACCEPT QUERY PARAMS FROM FRONTEND CONST {SEARCH="", FILTER=[]} = REQ.QUERY
-
-//_______ PASS THE QUERY THROUGH HERE ENSURING THE DEFAULT IS ZEnergyStation.find({}) ________
-
-//_____ DEFAULT IS FIND ALL STATIONS _____
-
-//____ QUERY THE DATABASE ______
-
 // if there is no search then get everything else display the filtered results
 export const getStations = async (req, res) => {
   try {
-    let { search = "", services = [], fuelType = [] } = req.query;
-    console.log("Received query params:", { search, services, fuelType });
+    let { search = "", services = [], fuelTypes = [] } = req.query;
+
     if (typeof services === "string") {
       services = services.split(","); // convert single string to array
     }
-    if (typeof fuelType === "string") {
-      fuelType = fuelType.split(","); // convert single string to array
+    if (typeof fuelTypes === "string") {
+      fuelTypes = fuelTypes.split(","); // convert single string to array
     }
+    
     let getStationResult = [];
-    if (search === "" && services.length === 0 && fuelType.length === 0) {
+    if (search === "" && services.length === 0 && fuelTypes.length === 0) {
       console.log("No search or filter provided, fetching all stations.");
       getStationResult = await ZEnergyStation.find({});
     } else {
-      getStationResult = await searchQuery(search, services, fuelType);
+      getStationResult = await searchQuery(search, services, fuelTypes);
       console.log(
         `Fetched ${getStationResult.length} stations based on search and filters.`
       );
