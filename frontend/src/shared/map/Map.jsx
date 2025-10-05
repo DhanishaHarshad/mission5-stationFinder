@@ -20,6 +20,16 @@ const defaultCenter = {
   lat: -36.860756,
   lng: 174.77781, // AKL coords
 };
+  /*_____ ADDED nzCenter  ___________
+  --- This is used to detect the current route to conditionally render 
+  the default centre over nz in /find-station  ---
+*/
+const nzCenter = {
+  lat: -40.9006,
+  lng: 174.8860,
+};
+//_____________________________________________________
+
 
 export default function Map({
   userLocation,
@@ -109,10 +119,13 @@ export default function Map({
     <div style={{ width: "100%", height: "100%" }}>
       <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
         <GoogleMap
-          center={defaultCenter}
+
+          //_____ DEFAULT MAP COORDINATES ___________________________________
+          //--- Update the map center based on the route ---
+          center={currentPath === "/find-station" ? nzCenter : defaultCenter}
           //_____ MAP ZOOM  ___________________________________
           //--- Update the zoom level based on the route ---
-          zoom={currentPath === "/find-station" ? 5.2 : 12}
+          zoom={currentPath === "/find-station" ? 6 : 12}
           //___________________________________________________
 
           mapContainerStyle={containerStyle}
