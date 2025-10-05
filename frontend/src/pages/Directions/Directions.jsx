@@ -254,17 +254,17 @@ export default function Directions({ userLocation }) {
             {/* conditional render station info */}
             {selectedStation ? (
               <div className={styles.directionsStationCardWrapper}>
-                <div className={styles.directionsSationCardInfo}>
+                <div className={styles.directionsStationCardInfo}>
                   <h3 className={styles.directionsStationCardHeaders}>Fuel</h3>
                   <Fuels fuelPrices={selectedStation.fuelPrices} />
                 </div>
-                <div className={styles.directionsSationCardInfo}>
+                <div className={styles.directionsStationCardInfo}>
                   <h3 className={styles.directionsStationCardHeaders}>Hours</h3>
                   <OperatingHours
                     operatingHours={selectedStation.openingHours}
                   />
                 </div>
-                <div className={styles.directionsSationCardInfo}>
+                <div className={styles.directionsStationCardInfo}>
                   <h3 className={styles.directionsStationCardHeaders}>
                     Services
                   </h3>
@@ -272,7 +272,7 @@ export default function Directions({ userLocation }) {
                 </div>
               </div>
             ) : (
-              <div>
+              <div className={styles.directionsStationCardInfo}>
                 <p>no station selected</p>
               </div>
             )}
