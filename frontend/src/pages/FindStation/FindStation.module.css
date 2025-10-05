@@ -39,8 +39,8 @@
 
 .findStationPage > .content {
   display: flex;
-  height: 78vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 .stationContainer {
@@ -63,11 +63,6 @@
 .stationCount {
   text-align: center;
   padding: 1rem;
-}
-.content {
-  background-color: pink;
-  width: 100%;
-  height: 100vh;
 }
 
 ::-webkit-scrollbar {

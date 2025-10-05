@@ -10,6 +10,7 @@ import { formatStation } from "../../utils/formatStation";
 import { formatSelectedFilters } from "../../utils/formatSelectedFilters";
 
 export default function FindStation() {
+  const [mapCenter, setMapCenter] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -102,7 +103,7 @@ export default function FindStation() {
           {/* ___________ STATION RESULT COUNTER _______________ */}
           <p className={styles.stationCount}>
             {" "}
-            {stations.length} Stations Found
+            {formattedStations.length} Stations Found
           </p>
 
           {/* ___________ STATION CARDS _______________ */}
@@ -114,7 +115,7 @@ export default function FindStation() {
         </section>
         {/* ___________ MAP _______________ */}
         <section className={styles.mapContainer}>
-          <Map stationLocation={null} stationMarkers={formattedStations} />
+          <Map stationLocation={mapCenter} stationMarkers={formattedStations} />
         </section>
       </section>
       <Footer />
