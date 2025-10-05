@@ -57,6 +57,16 @@ export const filterData = [
         label: "Pre-order Coffee",
         value: "preorder_coffee",
         icon: "/assets/icons/services/PreOrderCoffee.png"
+      },
+      {
+        label: "LPG Bottle Swap",
+        value: "LPG_bottle_swap",
+        icon: "/assets/icons/services/LPGBottleSwap.png"
+      },
+      {
+        label: "Recycling",
+        value: "recycling",
+        icon: "/assets/icons/services/Recycling.png"
       }
     ]
   },
@@ -101,6 +111,11 @@ export const filterData = [
         label: "Tyre Pressure",
         value: "tyre_pressure",
         icon: "/assets/icons/services/TyrePressure.png"
+      },
+      {
+        label: "Trailer Hire",
+        value: "trailer_hire",
+        icon: "/assets/icons/services/TrailerHire.png"
       }
     ]
   }

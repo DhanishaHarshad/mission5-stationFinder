@@ -1,6 +1,6 @@
 .filterContainer {
-  max-height: 36vh;
-  width: 17vw;
+  max-height: 38vh;
+  width: 20vw;
   transition: max-height 0.3s ease;
   overflow-y: auto;
   display: flex;
@@ -18,7 +18,7 @@
     display: none;
 }
 .expanded {
-  max-height: 82vh;
+  max-height: 85vh;
 }
 
 .card {
@@ -91,4 +91,10 @@
 .applyBtn {
     background: var(--Primary-Orange);
     color: var(--Neutral-White);   
+}
+
+@media screen and (min-width: 1200px) {
+  .filterContainer {
+    margin-top: calc(1rem + 8vh);
+  }
 }
