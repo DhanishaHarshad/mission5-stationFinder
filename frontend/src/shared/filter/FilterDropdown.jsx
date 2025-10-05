@@ -2,7 +2,7 @@ import styles from "./FilterDropdown.module.css";
 import { filterData } from "../../utils/filterData";
 import { useState } from "react";
 
-export default function FilterDropdown() {
+export default function FilterDropdown(props) {
   const [openCategories, setOpenCategories] = useState({});
   const [selectedCheckbox, setSelectedCheckbox] = useState([]);
   const isExpanded = Object.values(openCategories).some(Boolean);
@@ -20,6 +20,10 @@ export default function FilterDropdown() {
         ? prev.filter((checkBox) => checkBox !== item)
         : [...prev, item]
     );
+  };
+
+  const onApplyFilter = () => {
+    props.onApplyFilter(selectedCheckbox);
   };
 
   return (
@@ -67,7 +71,7 @@ export default function FilterDropdown() {
         <button className={styles.clearBtn}>
           Clear Filter ( {selectedCheckbox.length} )
         </button>
-        <button className={styles.applyBtn}>
+        <button className={styles.applyBtn} onClick={onApplyFilter}>
           Apply Filter ( {selectedCheckbox.length} )
         </button>
       </div>
